@@ -1,0 +1,560 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Owin.Security</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Owin.Security.AppBuilderSecurityExtensions">
+      <summary>Yalnızca kimlik doğrulaması ara yazılımı uygulamaları için gerekli app.Property değerlerine yönelik genişletme yöntemleri sağlar.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.AppBuilderSecurityExtensions.GetDefaultSignInAsAuthenticationType(Owin.IAppBuilder)">
+      <summary>Tarayıcı döndürülen url'ye geri gittiğinde dış oturum açma ara yazılımının kullanması gereken önceden ayarlanmış AuthenticationType değerini döndürür.</summary>
+      <param name="app">Uygulama başlangıç koduna geçen uygulama oluşturucu</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.AppBuilderSecurityExtensions.SetDefaultSignInAsAuthenticationType(Owin.IAppBuilder,System.String)">
+      <summary>Tarayıcı döndürülen url'ye geri gittiğinde dış ara yazılımın kullanması gereken AuthenticationType öğesinin adını değiştirmek üzere ara yazılım tarafından çağrılır.</summary>
+      <param name="app">Uygulama başlangıç koduna geçen uygulama oluşturucu</param>
+      <param name="authenticationType">Dış ara yazılımın oturum açarken kullanacağı AuthenticationType.</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.AuthenticationMode">
+      <summary>Kimlik doğrulaması ara yazılımının davranışını denetler</summary>
+    </member>
+    <member name="F:Microsoft.Owin.Security.AuthenticationMode.Active">
+      <summary>Etkin modda ara yazılım istek ulaştığında kullanıcı kimliğini değiştirir ve ayrıca yanıt ayrıldığında bir düz 401'i değiştirir.</summary>
+    </member>
+    <member name="F:Microsoft.Owin.Security.AuthenticationMode.Passive">
+      <summary>Edilgen modda kimlik doğrulaması ara yazılımı yalnızca istendiğinde kullanıcı kimliğini verir ve yalnızca kimlik doğrulaması türünün ek sınama verilerinde adlandırıldığı durumlarda 401 yanıtlarını değiştirir.</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.AuthenticationOptions">
+      <summary>Tüm kimlik doğrulaması ara yazılımları için Temel Seçenekler</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.AuthenticationOptions.#ctor(System.String)">
+      <summary>AuthenticationOptions temel sınıfının özelliklerini başlatır</summary>
+      <param name="authenticationType">AuthenticationType özelliğine atanır</param>
+    </member>
+    <member name="P:Microsoft.Owin.Security.AuthenticationOptions.AuthenticationMode">
+      <summary>Etkin ise kimlik doğrulaması ara yazılımı gelen istek kullanıcısını ve giden 401 Yetkisiz yanıtlarını değiştirir.Edilgen ise kimlik doğrulaması ara yazılımı yalnızca AuthenticationType tarafından açıkça belirtildiğinde kimliği verir ve yanıtları değiştirir.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.AuthenticationOptions.AuthenticationType">
+      <summary>Seçeneklerdeki AuthenticationType, IIdentity AuthenticationType özelliğine karşılık gelir.Aynı kimlik doğrulaması ara yazılımı türünün bir ardışık düzende birden çok kez kullanılması için farklı bir değer atanabilir.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.AuthenticationOptions.Description">
+      <summary>Uygulamanın kullanımına sunulan kimlik doğrulaması hakkındaki ek bilgiler.</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.AuthenticationTicket">
+      <summary>Ek kimlik doğrulaması durumunun yanı sıra kullanıcı kimliği bilgilerini de içerir.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.AuthenticationTicket.#ctor(System.Security.Claims.ClaimsIdentity,Microsoft.Owin.Security.AuthenticationProperties)">
+      <summary>
+        <see cref="T:Microsoft.Owin.Security.AuthenticationTicket" /> sınıfının yeni bir örneğini başlatır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.AuthenticationTicket.Identity">
+      <summary>Doğrulanan kullanıcı kimliğini alır.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.AuthenticationTicket.Properties">
+      <summary>Doğrulama oturumu için ek durum değerleri.</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.CertificateSubjectKeyIdentifierValidator">
+      <summary>Sertifikanın konu anahtarı tanımlayıcısına göre sabitlenmiş sertifika doğrulaması sağlar.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.CertificateSubjectKeyIdentifierValidator.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+      <summary>
+        <see cref="T:Microsoft.Owin.Security.CertificateSubjectKeyIdentifierValidator" /> sınıfının yeni bir örneğini başlatır.</summary>
+      <param name="validSubjectKeyIdentifiers">Bir HTTPS isteği için geçerli olan konu anahtarı tanımlayıcıları kümesi.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.CertificateSubjectKeyIdentifierValidator.Validate(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+      <summary>Doğrulama için kullanılan uzak Güvenli Yuva Katmanı (SSL) sertifikasını doğrular.</summary>
+      <returns>Belirtilen sertifikanın doğrulama için kabul edilip edilmeyeceğine karar veren bir Boole değeri.</returns>
+      <param name="sender">Bu doğrulama için durum bilgilerini içeren bir nesne.</param>
+      <param name="certificate">Uzak tarafı doğrulamak için kullanılan sertifika.</param>
+      <param name="chain">Uzak sertifikayla ilişkili sertifika yetkilileri zinciri.</param>
+      <param name="sslPolicyErrors">Uzak sertifikayla ilişkili bir veya birden fazla hata.</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.CertificateSubjectPublicKeyInfoValidator">
+      <summary>http://datatracker.ietf.org/doc/draft-ietf-websec-key-pinning/?include_text=1 adresindeki bir sertifika sabitleme doğrulayıcısını başlatır</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.CertificateSubjectPublicKeyInfoValidator.#ctor(System.Collections.Generic.IEnumerable{System.String},Microsoft.Owin.Security.SubjectPublicKeyInfoAlgorithm)">
+      <summary>
+        <see cref="T:Microsoft.Owin.Security.CertificateSubjectPublicKeyInfoValidator" /> sınıfının yeni bir örneğini başlatır.</summary>
+      <param name="validBase64EncodedSubjectPublicKeyInfoHashes">Sertifika ortak anahtar bilgileri blob'unun geçerli base64 kodlanmış karma değer koleksiyonu.</param>
+      <param name="algorithm">Karma değerleri oluşturmak için kullanılan algoritma.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.CertificateSubjectPublicKeyInfoValidator.Validate(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+      <summary>En az bir SPKI karma değerinin bilindiğini doğrular.</summary>
+      <returns>Belirtilen sertifikanın doğrulama için kabul edilip edilmeyeceğine karar veren bir Boole değeri.</returns>
+      <param name="sender">Bu doğrulama için durum bilgilerini içeren bir nesne.</param>
+      <param name="certificate">Uzak tarafı doğrulamak için kullanılan sertifika.</param>
+      <param name="chain">Uzak sertifikayla ilişkili sertifika yetkilileri zinciri.</param>
+      <param name="sslPolicyErrors">Uzak sertifikayla ilişkili bir veya birden fazla hata.</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.CertificateThumbprintValidator">
+      <summary>Sertifika parmak izinden yola çıkarak sabit sertifika doğrulama sağlar.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.CertificateThumbprintValidator.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+      <summary>
+        <see cref="T:Microsoft.Owin.Security.CertificateThumbprintValidator" /> sınıfının yeni bir örneğini başlatır.</summary>
+      <param name="validThumbprints">Bir HTTPS isteği için geçerli olan parmak izleri kümesi.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.CertificateThumbprintValidator.Validate(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+      <summary>Oturum açma zincirindeki sertifika parmak izlerinin beyaz listedeki en az bir parmak iziyle eşleştiğini doğrular.</summary>
+      <returns>Belirtilen sertifikanın doğrulama için kabul edilip edilmeyeceğine karar veren bir Boole değeri.</returns>
+      <param name="sender">Bu doğrulama için durum bilgilerini içeren bir nesne.</param>
+      <param name="certificate">Uzak tarafı doğrulamak için kullanılan sertifika.</param>
+      <param name="chain">Uzak sertifikayla ilişkili sertifika yetkilileri zinciri.</param>
+      <param name="sslPolicyErrors">Uzak sertifikayla ilişkili bir veya birden fazla hata.</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.ICertificateValidator">
+      <summary>Ana bilgisayar sahibinin bilgisi olmadan ana bilgisayarlar için sertifikalar düzenleyen gizliliği ihlal edilmiş veya standart dışı CA'lara karşı koruma sağlamak üzere bilinen bir iyi sertifika listesine karşı HTTPS iletişimini denetleyen sabitlenmiş sertifika doğrulamasını sağlama ara birimi.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.ICertificateValidator.Validate(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+      <summary>Doğrulama için kullanılan uzak Güvenli Yuva Katmanı (SSL) sertifikasını doğrular.</summary>
+      <returns>Belirtilen sertifikanın doğrulama için kabul edilip edilmeyeceğine karar veren bir Boole değeri.</returns>
+      <param name="sender">Bu doğrulama için durum bilgilerini içeren bir nesne.</param>
+      <param name="certificate">Uzak tarafı doğrulamak için kullanılan sertifika.</param>
+      <param name="chain">Uzak sertifikayla ilişkili sertifika yetkilileri zinciri.</param>
+      <param name="sslPolicyErrors">Uzak sertifikayla ilişkili bir veya birden fazla hata.</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.ISecureDataFormat`1">
+      <summary>Güvenliği sağlanacak verileri temsil eder.</summary>
+      <typeparam name="TData">Genel tür verileri.</typeparam>
+    </member>
+    <member name="M:Microsoft.Owin.Security.ISecureDataFormat`1.Protect(`0)">
+      <summary>Bir veriyi biçimlendirilememesi için korur.</summary>
+      <returns>Korunacak bir veri.</returns>
+      <param name="data">Veriler.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.ISecureDataFormat`1.Unprotect(System.String)">
+      <summary>Belirtilen metindeki verilerin şifresini çözer.</summary>
+      <returns>Şifresi çözülecek veriler.</returns>
+      <param name="protectedText">Korunan metin.</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.SubjectPublicKeyInfoAlgorithm">
+      <summary>Konu ortak anahtarı blob karmaları oluşturmak için kullanılan algoritma.</summary>
+    </member>
+    <member name="F:Microsoft.Owin.Security.SubjectPublicKeyInfoAlgorithm.Sha1">
+      <summary />
+    </member>
+    <member name="F:Microsoft.Owin.Security.SubjectPublicKeyInfoAlgorithm.Sha256">
+      <summary />
+    </member>
+    <member name="T:Microsoft.Owin.Security.DataHandler.PropertiesDataFormat"></member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.PropertiesDataFormat.#ctor(Microsoft.Owin.Security.DataProtection.IDataProtector)"></member>
+    <member name="T:Microsoft.Owin.Security.DataHandler.SecureDataFormat`1">
+      <typeparam name="TData"></typeparam>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.SecureDataFormat`1.#ctor(Microsoft.Owin.Security.DataHandler.Serializer.IDataSerializer{`0},Microsoft.Owin.Security.DataProtection.IDataProtector,Microsoft.Owin.Security.DataHandler.Encoder.ITextEncoder)"></member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.SecureDataFormat`1.Protect(`0)"></member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.SecureDataFormat`1.Unprotect(System.String)"></member>
+    <member name="T:Microsoft.Owin.Security.DataHandler.TicketDataFormat"></member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.TicketDataFormat.#ctor(Microsoft.Owin.Security.DataProtection.IDataProtector)"></member>
+    <member name="T:Microsoft.Owin.Security.DataHandler.Encoder.Base64TextEncoder">
+      <summary>Bir metin base64 biçimi kodlayıcısını temsil eder.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Encoder.Base64TextEncoder.#ctor">
+      <summary>
+        <see cref="T:Microsoft.Owin.Security.DataHandler.Encoder.Base64TextEncoder" /> sınıfının yeni bir örneğini başlatır.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Encoder.Base64TextEncoder.Decode(System.String)">
+      <summary>Belirtilen metnin kodunu çözer.</summary>
+      <returns>Kodu çözülmüş verileri temsil eden bir <see cref="T:System.Byte" />.</returns>
+      <param name="text">Kodu çözülecek metin.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Encoder.Base64TextEncoder.Encode(System.Byte[])">
+      <summary>Bir veriyi base64 biçiminde bir dizeye dönüştürür.</summary>
+      <returns>Base64 biçimine dönüştürülen bir veri dizesi.</returns>
+      <param name="data">Dönüştürülecek veriler.</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.DataHandler.Encoder.Base64UrlTextEncoder">
+      <summary>Bir metin Base64Url biçimi kodlayıcısını temsil eder.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Encoder.Base64UrlTextEncoder.#ctor">
+      <summary>
+        <see cref="T:Microsoft.Owin.Security.DataHandler.Encoder.Base64UrlTextEncoder" /> sınıfının yeni bir örneğini başlatır.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Encoder.Base64UrlTextEncoder.Decode(System.String)">
+      <summary>Belirtilen metnin kodunu çözer.</summary>
+      <returns>Kodu çözülmüş verileri temsil eden bir <see cref="T:System.Byte" />.</returns>
+      <param name="text">Kodu çözülecek metin.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Encoder.Base64UrlTextEncoder.Encode(System.Byte[])">
+      <summary>Bir veriyi Base64Url biçiminde bir dizeye dönüştürür.</summary>
+      <returns>Base64Url biçimine dönüştürülen bir veri dizesi.</returns>
+      <param name="data">Dönüştürülecek veriler.</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.DataHandler.Encoder.ITextEncoder">
+      <summary>Metin kodlayıcı için bir arabirimi temsil eder.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Encoder.ITextEncoder.Decode(System.String)">
+      <summary>Belirtilen metnin kodunu çözer.</summary>
+      <returns>Kodu çözülmüş verileri temsil eden bir <see cref="T:System.Byte" />.</returns>
+      <param name="text">Kodu çözülecek metin.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Encoder.ITextEncoder.Encode(System.Byte[])">
+      <summary>Bir veriyi dizeye dönüştürür.</summary>
+      <returns>Dönüştürülen bir veri dizesi.</returns>
+      <param name="data">Dönüştürülecek veriler.</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.DataHandler.Encoder.TextEncodings">
+      <summary>Metin kodlamalarını temsil eder.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.DataHandler.Encoder.TextEncodings.Base64">
+      <summary>Bir Base64 metin kodlayıcıyı alır.</summary>
+      <returns>Bir Base64 metin kodlayıcı.</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.DataHandler.Encoder.TextEncodings.Base64Url">
+      <summary>Bir Base64Url metin kodlayıcıyı alır.</summary>
+      <returns>Bir Base64Url metin kodlayıcı.</returns>
+    </member>
+    <member name="T:Microsoft.Owin.Security.DataHandler.Serializer.DataSerializers">
+      <summary>Veri serileştiricileri sağlar.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.DataHandler.Serializer.DataSerializers.Properties"></member>
+    <member name="P:Microsoft.Owin.Security.DataHandler.Serializer.DataSerializers.Ticket">
+      <summary>Bilet veri serileştirici alır veya ayarlar.</summary>
+      <returns>Bilet veri serileştirici.</returns>
+    </member>
+    <member name="T:Microsoft.Owin.Security.DataHandler.Serializer.IDataSerializer`1">
+      <summary>Veri serileştirici için bir arabirimi temsil eder.</summary>
+      <typeparam name="TModel">Veriler için model türü.</typeparam>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Serializer.IDataSerializer`1.Deserialize(System.Byte[])">
+      <summary>Belirtilen verileri seri durumdan çıkarır.</summary>
+      <param name="data">Seri durumdan çıkarılacak veriler.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Serializer.IDataSerializer`1.Serialize(`0)">
+      <summary>Belirli bir modelle bir veriyi serileştirir.</summary>
+      <param name="model">Veri modeli.</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.DataHandler.Serializer.PropertiesSerializer"></member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Serializer.PropertiesSerializer.#ctor"></member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Serializer.PropertiesSerializer.Deserialize(System.Byte[])"></member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Serializer.PropertiesSerializer.Read(System.IO.BinaryReader)"></member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Serializer.PropertiesSerializer.Serialize(Microsoft.Owin.Security.AuthenticationProperties)"></member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Serializer.PropertiesSerializer.Write(System.IO.BinaryWriter,Microsoft.Owin.Security.AuthenticationProperties)"></member>
+    <member name="T:Microsoft.Owin.Security.DataHandler.Serializer.TicketSerializer">
+      <summary>Bir bilet serileştiriciyi temsil eder.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Serializer.TicketSerializer.#ctor">
+      <summary>
+        <see cref="T:Microsoft.Owin.Security.DataHandler.Serializer.TicketSerializer" /> sınıfının yeni bir örneğini başlatır.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Serializer.TicketSerializer.Deserialize(System.Byte[])">
+      <summary>Bilet verilerini seri durumdan çıkarır.</summary>
+      <returns>Seri durumdan çıkarılmakta olan veriler.</returns>
+      <param name="data">Seri durumdan çıkarılacak veriler.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Serializer.TicketSerializer.Read(System.IO.BinaryReader)">
+      <summary>Okuyucudan belirtilen bir ek veriyi okur.</summary>
+      <returns>Okunmakta olan veriler.</returns>
+      <param name="reader">Okunacak okuyucu.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Serializer.TicketSerializer.Serialize(Microsoft.Owin.Security.AuthenticationTicket)">
+      <summary>Belirli bir modelle bir veriyi serileştirir.</summary>
+      <param name="model">Veri modeli.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataHandler.Serializer.TicketSerializer.Write(System.IO.BinaryWriter,Microsoft.Owin.Security.AuthenticationTicket)">
+      <summary>Belirtilen yazıcıdan bir veri yazar.</summary>
+      <param name="writer">Yazıcı.</param>
+      <param name="model">Veri modeli.</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.DataProtection.AppBuilderExtensions">
+      <summary>Uygulama oluşturucu uzantıları.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataProtection.AppBuilderExtensions.CreateDataProtector(Owin.IAppBuilder,System.String[])">
+      <summary>Bir veri koruyucu oluşturur.</summary>
+      <returns>Oluşturulan <see cref="T:Microsoft.Owin.Security.DataProtection.IDataProtector" />.</returns>
+      <param name="app">Uygulama oluşturucu.</param>
+      <param name="purposes">Veri koruyucu oluşturmaya yönelik amaçlar listesi.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataProtection.AppBuilderExtensions.GetDataProtectionProvider(Owin.IAppBuilder)">
+      <summary>Uygulama için bir veri koruma sağlayıcısı alır.</summary>
+      <returns>Alınacak <see cref="T:Microsoft.Owin.Security.DataProtection.IDataProtectionProvider" /> nesnesi.</returns>
+      <param name="app">Uygulama oluşturucu.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataProtection.AppBuilderExtensions.SetDataProtectionProvider(Owin.IAppBuilder,Microsoft.Owin.Security.DataProtection.IDataProtectionProvider)">
+      <summary>Bir veri koruma sağlayıcısı ayarlar.</summary>
+      <param name="app">Uygulama oluşturucu.</param>
+      <param name="dataProtectionProvider">Ayarlanacak veri koruma sağlayıcısı.</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.DataProtection.DpapiDataProtectionProvider">
+      <summary>Veri Koruma API'sinden elde edilen veri koruma hizmetlerini sağlamak için kullanılır.Uygulamanız ASP.NET tarafından barındırılmadığında ve tüm işlemler aynı etki alanı kimliği olarak çalıştığında veri korumanın en iyi seçeneğidir.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataProtection.DpapiDataProtectionProvider.#ctor">
+      <summary>Rastgele bir uygulama adıyla yeni bir DpapiDataProtectionProvider başlatır.Bu yalnızca geçerli uygulama yürütmesi sırasında verileri korumak için yararlıdır.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataProtection.DpapiDataProtectionProvider.#ctor(System.String)">
+      <summary>Koruma algoritmasının bir parçası olarak belirtilen appName'i kullanan yeni bir DpapiDataProtectionProvider başlatır</summary>
+      <param name="appName">Güvenli verilerin gidip dönmesi için kullanıcı tarafından sağlanan bir değer gerekir.Varsayılan değer kendini barındırdığında IAppBuilder.Properties["owin.AppName"] öğesinden gelir.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataProtection.DpapiDataProtectionProvider.Create(System.String[])">
+      <summary>Sağlayıcı için yeni bir IDataProtection örneği döndürür.</summary>
+      <returns>Veri koruma hizmetinin bir örneği</returns>
+      <param name="purposes">Korunan verilerin korumasının yalnızca doğru amaçlarla kaldırıldığından emin olmak için kullanılan ek entropi.</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.DataProtection.IDataProtectionProvider">
+      <summary> IDataProtection örnekleri oluşturmak için kullanılan üreteç.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataProtection.IDataProtectionProvider.Create(System.String[])">
+      <summary> Sağlayıcı için yeni bir IDataProtection örneği döndürür. </summary>
+      <returns>Veri koruma hizmetinin bir örneği.</returns>
+      <param name="purposes">Korunan verilerin korumasının yalnızca doğru amaçlarla kaldırıldığından emin olmak için kullanılan ek entropi.</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.DataProtection.IDataProtector">
+      <summary> Verileri korumak ve korumasını kaldırmak için kullanılan hizmet.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataProtection.IDataProtector.Protect(System.Byte[])">
+      <summary> Kullanıcı verilerini korumak için çağrılır.</summary>
+      <param name="userData">Korunması gereken özgün veriler.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.DataProtection.IDataProtector.Unprotect(System.Byte[])">
+      <summary> Kullanıcı verilerinin korumasını kaldırmak için çağrılır.</summary>
+      <param name="protectedData">Türdeş bir IDataProtection hizmetinde bir Protect çağrısı ile döndürülen bayt dizisi.</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler">
+      <summary> Birçok kimlik doğrulaması ara yazılımı tarafından gerçekleştirilen istek başına iş için temel sınıf. </summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler.#ctor">
+      <summary>
+        <see cref="T:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler" /> sınıfının yeni bir örneğini başlatır.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler.ApplyResponseChallengeAsync">
+      <summary>Söz konusu kimlik doğrulaması istek akışının bir parçası olarak kimlik doğrulaması etkileşimiyle ilgileniyorsa, 401 sınama sorunlarını çözmek için bu yöntemi geçersiz kılın.(bir yanıt üstbilgisi ekleme veya 401 sonucunu oturum açma sayfasının 302 sonucuyla veya dış oturum açma konumuyla değiştirme gibi.)</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler.ApplyResponseCoreAsync">
+      <summary>İşleyici tarafından geçersiz kılınabilen temel yöntem.Varsayılan davranış, biri oturum açma/oturumu kapatma sorunlarıyla ilgilenen, diğeri ise 401 sınamalarını çözmeye yarayan iki ortak yanıt etkinliğini çağırma şeklindedir.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler.ApplyResponseGrantAsync">
+      <summary>Söz konusu kimlik doğrulaması istek akışının bir parçası olarak verme/iptal işlemiyle ilgileniyorsa, oturum açma/oturumu kapatma sorunlarını çözmek için bu yöntemi geçersiz kılın.(tanımlama bilgilerini ayarlama/silme gibi)</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler.AuthenticateAsync">
+      <summary>AuthenticateCore içindeki kimlik doğrulaması mantığının geçerli istek için en fazla bir kez uygulanmasına neden olur ve sonuçları döndürür.Authenticate olayının bir defadan çok çağrılması her zaman özgün değeri döndürür.AuthenticateCore olayını doğrudan çağırmak yerine her zaman bu yöntem çağrılmalıdır.</summary>
+      <returns>Kimlik doğrulaması mantığı tarafından sağlanan bilet verileri</returns>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler.AuthenticateCoreAsync">
+      <summary>İşleyici tarafından sağlanması gereken temel kimlik doğrulaması mantığı.İstek başına en fazla bir kez çağrılır.Doğrudan çağırmayın, bunun yerine saran Authenticate yöntemini çağırın.</summary>
+      <returns>Kimlik doğrulaması mantığı tarafından sağlanan bilet verileri</returns>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler.BaseInitializeAsync(Microsoft.Owin.Security.AuthenticationOptions,Microsoft.Owin.IOwinContext)"></member>
+    <member name="P:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler.Context"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler.GenerateCorrelationId(Microsoft.Owin.Security.AuthenticationProperties)"></member>
+    <member name="P:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler.Helper"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler.InitializeCoreAsync"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler.InvokeAsync">
+      <summary>Başlattıktan sonra ortak kodla bir kez çağrılır.Bir kimlik doğrulaması ara yazılımı doğrudan özellikle bilinen yollara yanıt verirse, bu sanal yolu geçersiz kılmalı, istek yolunu bilinen yollarla karşılaştırmalı, uygun bir yanıt bilgisi vermeli ve diğer işlemleri durdurmak için true değeri almalıdır.</summary>
+      <returns>False değerinin döndürülmesi, ortak kodun satırda sonraki ara yazılımı çağırmasına neden olur.True değerinin döndürülmesi ortak kodun kalan ara yazılım ardışık düzenini çağırmadan zaman uyumsuz tamamlama gezisine başlamasına neden olur.</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler.Request"></member>
+    <member name="P:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler.RequestPathBase"></member>
+    <member name="P:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler.Response"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler.TeardownCoreAsync"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler.ValidateCorrelationId(Microsoft.Owin.Security.AuthenticationProperties,Microsoft.Owin.Logging.ILogger)"></member>
+    <member name="T:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler`1">
+      <summary>Birçok kimlik doğrulaması ara yazılımı tarafından gerçekleştirilen istek başına iş için temel sınıf.</summary>
+      <typeparam name="TOptions">AuthenticationOptions özelliği türünü belirtir</typeparam>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler`1.#ctor">
+      <summary>
+        <see cref="T:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler`1" /> sınıfının yeni bir örneğini başlatır.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler`1.Options"></member>
+    <member name="T:Microsoft.Owin.Security.Infrastructure.AuthenticationMiddleware`1">
+      <summary>Kimlik doğrulaması ara yazılımını temsil eder.</summary>
+      <typeparam name="TOptions">Kimlik doğrulaması seçeneklerinin türü.</typeparam>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationMiddleware`1.#ctor(Microsoft.Owin.OwinMiddleware,`0)">
+      <summary>
+        <see cref="T:Microsoft.Owin.Security.Infrastructure.AuthenticationMiddleware`1" /> sınıfının yeni bir örneğini başlatır.</summary>
+      <param name="next">Sonraki OWIN ara yazılımı.</param>
+      <param name="options">Kimlik doğrulaması seçenekleri.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationMiddleware`1.CreateHandler">
+      <summary>Bir kimlik doğrulama işleyicisi oluşturur.</summary>
+      <returns>Oluşturulan <see cref="T:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler`1" />.</returns>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationMiddleware`1.Invoke(Microsoft.Owin.IOwinContext)"></member>
+    <member name="P:Microsoft.Owin.Security.Infrastructure.AuthenticationMiddleware`1.Options">
+      <summary>Kimlik doğrulaması seçeneklerini alır veya ayarlar.</summary>
+      <returns>Kimlik doğrulamasını tamamlayan görev.</returns>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenCreateContext"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenCreateContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.ISecureDataFormat{Microsoft.Owin.Security.AuthenticationTicket},Microsoft.Owin.Security.AuthenticationTicket)"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenCreateContext.SerializeTicket"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenCreateContext.SetToken(System.String)"></member>
+    <member name="P:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenCreateContext.Ticket"></member>
+    <member name="P:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenCreateContext.Token"></member>
+    <member name="T:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenProvider"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenProvider.#ctor"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenProvider.Create(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenCreateContext)"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenProvider.CreateAsync(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenCreateContext)"></member>
+    <member name="P:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenProvider.OnCreate"></member>
+    <member name="P:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenProvider.OnCreateAsync"></member>
+    <member name="P:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenProvider.OnReceive"></member>
+    <member name="P:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenProvider.OnReceiveAsync"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenProvider.Receive(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenReceiveContext)"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenProvider.ReceiveAsync(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenReceiveContext)"></member>
+    <member name="T:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenReceiveContext"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenReceiveContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.ISecureDataFormat{Microsoft.Owin.Security.AuthenticationTicket},System.String)"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenReceiveContext.DeserializeTicket(System.String)"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenReceiveContext.SetTicket(Microsoft.Owin.Security.AuthenticationTicket)"></member>
+    <member name="P:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenReceiveContext.Ticket"></member>
+    <member name="P:Microsoft.Owin.Security.Infrastructure.AuthenticationTokenReceiveContext.Token"></member>
+    <member name="T:Microsoft.Owin.Security.Infrastructure.IAuthenticationTokenProvider"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.IAuthenticationTokenProvider.Create(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenCreateContext)"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.IAuthenticationTokenProvider.CreateAsync(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenCreateContext)"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.IAuthenticationTokenProvider.Receive(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenReceiveContext)"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.IAuthenticationTokenProvider.ReceiveAsync(Microsoft.Owin.Security.Infrastructure.AuthenticationTokenReceiveContext)"></member>
+    <member name="T:Microsoft.Owin.Security.Infrastructure.SecurityHelper">
+      <summary>Kimlik doğrulaması ara yazılımını uygularken kullanılan yardımcı kodu</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.SecurityHelper.#ctor(Microsoft.Owin.IOwinContext)">
+      <summary>Kimlik doğrulaması ara yazılımını uygularken kullanılan yardımcı kodu</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.SecurityHelper.AddUserIdentity(System.Security.Principal.IIdentity)">
+      <summary>"server.User" ortam anahtarındaki ClaimsPrincipal öğesine bir ClaimsIdentity daha ekleyin</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.SecurityHelper.Equals(Microsoft.Owin.Security.Infrastructure.SecurityHelper)"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.SecurityHelper.Equals(System.Object)"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.SecurityHelper.GetHashCode"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.SecurityHelper.LookupChallenge(System.String,Microsoft.Owin.Security.AuthenticationMode)">
+      <summary>Belirli bir kimlik doğrulaması ara yazılımı için yanıt sınama ayrıntılarını bulun</summary>
+      <returns>Ara yazılıma nasıl davranması gerektiğini söyleyen bilgiler</returns>
+      <param name="authenticationType">Aranacak kimlik doğrulaması türü</param>
+      <param name="authenticationMode">Ara yazılımın çalıştığı kimlik doğrulama modu</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.SecurityHelper.LookupSignIn(System.String)">
+      <summary>Belirli bir kimlik doğrulaması ara yazılımı için yanıt oturum açma ayrıntılarını bulun</summary>
+      <returns>Ara yazılıma nasıl davranması gerektiğini söyleyen bilgiler</returns>
+      <param name="authenticationType">Aranacak kimlik doğrulaması türü</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.SecurityHelper.LookupSignOut(System.String,Microsoft.Owin.Security.AuthenticationMode)">
+      <summary>Belirli bir kimlik doğrulaması ara yazılımı için yanıt oturumu kapatma ayrıntılarını bulun</summary>
+      <returns>Ara yazılıma nasıl davranması gerektiğini söyleyen bilgiler</returns>
+      <param name="authenticationType">Aranacak kimlik doğrulaması türü</param>
+      <param name="authenticationMode">Ara yazılımın çalıştığı kimlik doğrulama modu</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.SecurityHelper.op_Equality(Microsoft.Owin.Security.Infrastructure.SecurityHelper,Microsoft.Owin.Security.Infrastructure.SecurityHelper)"></member>
+    <member name="M:Microsoft.Owin.Security.Infrastructure.SecurityHelper.op_Inequality(Microsoft.Owin.Security.Infrastructure.SecurityHelper,Microsoft.Owin.Security.Infrastructure.SecurityHelper)"></member>
+    <member name="T:Microsoft.Owin.Security.Notifications.AuthenticationFailedNotification`2">
+      <typeparam name="TMessage"></typeparam>
+      <typeparam name="TOptions"></typeparam>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Notifications.AuthenticationFailedNotification`2.#ctor(Microsoft.Owin.IOwinContext,`1)"></member>
+    <member name="P:Microsoft.Owin.Security.Notifications.AuthenticationFailedNotification`2.Exception"></member>
+    <member name="P:Microsoft.Owin.Security.Notifications.AuthenticationFailedNotification`2.ProtocolMessage"></member>
+    <member name="T:Microsoft.Owin.Security.Notifications.BaseNotification`1">
+      <typeparam name="TOptions"></typeparam>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Notifications.BaseNotification`1.#ctor(Microsoft.Owin.IOwinContext,`0)"></member>
+    <member name="P:Microsoft.Owin.Security.Notifications.BaseNotification`1.HandledResponse"></member>
+    <member name="M:Microsoft.Owin.Security.Notifications.BaseNotification`1.HandleResponse">
+      <summary>Bu istek için tüm işlemeyi durdur ve istemciye döndür.Tam yanıtı oluşturma konusunda çağıran sorumludur.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Notifications.BaseNotification`1.Skipped"></member>
+    <member name="M:Microsoft.Owin.Security.Notifications.BaseNotification`1.SkipToNextMiddleware">
+      <summary>Geçerli ara yazılımdaki isteği işlemeyi durdur ve denetimi bir sonrakine ver.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Notifications.BaseNotification`1.State"></member>
+    <member name="T:Microsoft.Owin.Security.Notifications.MessageReceivedNotification`2">
+      <typeparam name="TMessage"></typeparam>
+      <typeparam name="TOptions"></typeparam>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Notifications.MessageReceivedNotification`2.#ctor(Microsoft.Owin.IOwinContext,`1)"></member>
+    <member name="P:Microsoft.Owin.Security.Notifications.MessageReceivedNotification`2.ProtocolMessage"></member>
+    <member name="T:Microsoft.Owin.Security.Notifications.NotificationResultState"></member>
+    <member name="F:Microsoft.Owin.Security.Notifications.NotificationResultState.Continue">
+      <summary>Normal işlemeyle devam et.</summary>
+    </member>
+    <member name="F:Microsoft.Owin.Security.Notifications.NotificationResultState.HandledResponse">
+      <summary>Bu istek için tüm işlemleri durdur.</summary>
+    </member>
+    <member name="F:Microsoft.Owin.Security.Notifications.NotificationResultState.Skipped">
+      <summary>Geçerli ara yazılımdaki isteği işlemeyi durdur ve denetimi bir sonrakine ver.</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Notifications.RedirectToIdentityProviderNotification`2">
+      <typeparam name="TMessage"></typeparam>
+      <typeparam name="TOptions"></typeparam>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Notifications.RedirectToIdentityProviderNotification`2.#ctor(Microsoft.Owin.IOwinContext,`1)"></member>
+    <member name="P:Microsoft.Owin.Security.Notifications.RedirectToIdentityProviderNotification`2.HandledResponse"></member>
+    <member name="M:Microsoft.Owin.Security.Notifications.RedirectToIdentityProviderNotification`2.HandleResponse">
+      <summary>Bu istek için tüm işlemeyi durdur ve istemciye döndür.Tam yanıtı oluşturma konusunda çağıran sorumludur.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Notifications.RedirectToIdentityProviderNotification`2.ProtocolMessage"></member>
+    <member name="P:Microsoft.Owin.Security.Notifications.RedirectToIdentityProviderNotification`2.State"></member>
+    <member name="T:Microsoft.Owin.Security.Notifications.SecurityTokenReceivedNotification`2">
+      <typeparam name="TMessage"></typeparam>
+      <typeparam name="TOptions"></typeparam>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Notifications.SecurityTokenReceivedNotification`2.#ctor(Microsoft.Owin.IOwinContext,`1)"></member>
+    <member name="P:Microsoft.Owin.Security.Notifications.SecurityTokenReceivedNotification`2.ProtocolMessage"></member>
+    <member name="T:Microsoft.Owin.Security.Notifications.SecurityTokenValidatedNotification`2">
+      <typeparam name="TMessage"></typeparam>
+      <typeparam name="TOptions"></typeparam>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Notifications.SecurityTokenValidatedNotification`2.#ctor(Microsoft.Owin.IOwinContext,`1)"></member>
+    <member name="P:Microsoft.Owin.Security.Notifications.SecurityTokenValidatedNotification`2.AuthenticationTicket">
+      <summary>
+        <see cref="P:Microsoft.Owin.Security.Notifications.SecurityTokenValidatedNotification`2.AuthenticationTicket" /> öğesini alır veya ayarlar</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Notifications.SecurityTokenValidatedNotification`2.ProtocolMessage">
+      <summary>Protokol iletisini alır veya ayarlar</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Provider.BaseContext">
+      <summary>Bir temel bağlamı temsil eder.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Provider.BaseContext.#ctor(Microsoft.Owin.IOwinContext)"></member>
+    <member name="P:Microsoft.Owin.Security.Provider.BaseContext.OwinContext"></member>
+    <member name="P:Microsoft.Owin.Security.Provider.BaseContext.Request"></member>
+    <member name="P:Microsoft.Owin.Security.Provider.BaseContext.Response"></member>
+    <member name="T:Microsoft.Owin.Security.Provider.BaseContext`1">
+      <summary>Bazı olay bağlamları için kullanılan temel sınıf</summary>
+      <typeparam name="TOptions"></typeparam>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Provider.BaseContext`1.#ctor(Microsoft.Owin.IOwinContext,`0)"></member>
+    <member name="P:Microsoft.Owin.Security.Provider.BaseContext`1.Options"></member>
+    <member name="P:Microsoft.Owin.Security.Provider.BaseContext`1.OwinContext"></member>
+    <member name="P:Microsoft.Owin.Security.Provider.BaseContext`1.Request"></member>
+    <member name="P:Microsoft.Owin.Security.Provider.BaseContext`1.Response"></member>
+    <member name="T:Microsoft.Owin.Security.Provider.EndpointContext">
+      <summary>Bir uç nokta bağlamını temsil eder.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Provider.EndpointContext.#ctor(Microsoft.Owin.IOwinContext)"></member>
+    <member name="P:Microsoft.Owin.Security.Provider.EndpointContext.IsRequestCompleted">
+      <summary>Bu bağlam için isteğin tamamlanıp tamamlanmadığını belirten bir değeri alır veya ayarlar.</summary>
+      <returns>Bu bağlam için istek tamamlandıysa true, aksi takdirde false.</returns>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Provider.EndpointContext.RequestCompleted">
+      <summary>Bağlam için tamamlanan isteği belirtir.</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Provider.EndpointContext`1">
+      <summary>Bazı olay bağlamları için kullanılan temel sınıf</summary>
+      <typeparam name="TOptions"></typeparam>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Provider.EndpointContext`1.#ctor(Microsoft.Owin.IOwinContext,`0)">
+      <summary>Bu bağlamın bir örneğini oluşturur</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Provider.EndpointContext`1.IsRequestCompleted">
+      <summary>İsteğin başka bileşenler tarafından daha fazla işlenmemesi gerekiyorsa true olur.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Provider.EndpointContext`1.RequestCompleted">
+      <summary>İsteğin başka bileşenler tarafından daha fazla işlenmesini önler.Çağırdıktan sonra IsRequestCompleted değeri true olur.</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Provider.ReturnEndpointContext">
+      <summary>Dönüş son noktası bağlamını temsil eder.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Provider.ReturnEndpointContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.AuthenticationTicket)"></member>
+    <member name="P:Microsoft.Owin.Security.Provider.ReturnEndpointContext.Identity">
+      <summary>Bu bağlamın kimliğini alır veya ayarlar.</summary>
+      <returns>Bu bağlamın kimliği.</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Provider.ReturnEndpointContext.Properties"></member>
+    <member name="P:Microsoft.Owin.Security.Provider.ReturnEndpointContext.RedirectUri">
+      <summary>Bu bağlam döndürülürken kullanılması gereken URI'yi alır veya ayarlar.</summary>
+      <returns>Bu bağlam döndürülürken kullanılması gereken URI.</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Provider.ReturnEndpointContext.SignInAsAuthenticationType">
+      <summary>Kimlik doğrulaması türü olarak oturum açan bağlamı alır veya ayarlar.</summary>
+      <returns>Kimlik doğrulaması türü olarak oturum açan bağlam.</returns>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,125 @@
+﻿@model auth.Models.Medicines
+@{
+    ViewBag.Title = "ilacHatırlatıcı";
+}
+
+<section class="breadcrumb breadcrumb_bg" style="margin-top:100px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb_iner">
+                    <div class="breadcrumb_iner_item">
+                        <h2>İlaç Hatırlatıcı</h2>
+                        <p>Ana Sayfa<span>/</span>İlaç Hatırlatıcı</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<section class="regervation_part">
+    <div class="container">
+        <div class="row align-items-center regervation_content">
+            <div class="col-lg-7 col-md-6">
+                <div class="regervation_part_iner">
+                    <form>
+                        <h2>ilaç Hatırlatıcı</h2>
+                        <div class="form-row">
+                            @using (Html.BeginForm("addReminder", "Home", new { }, FormMethod.Post))
+                            {
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" id="day1" name="day1" placeholder="Kaç günde bir kullanılacak">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" id="clock1" name="clock1" placeholder="Kaç saatte bir kullanılacak">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <select class="form-control" id="Select" name="Select" placeholder="İlaçlar">
+                                        @foreach (var item in Model.Medicine)
+                                        {
+                                            <option value="@item.medicine_id">@item.medicine_name</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group time_icon col-md-6">
+                                    <select class="form-control" id="Select2" name="Select2" placeholder="Başlangıç Saati">
+                                        <option value="00:00">00:00</option>
+                                        <option value="01:00">01:00</option>
+                                        <option value="02:00">02:00</option>
+                                        <option value="03:00">03:00</option>
+                                        <option value="04:00">04:00</option>
+                                        <option value="05:00">05:00</option>
+                                        <option value="06:00">06:00</option>
+                                        <option value="07:00">07:00</option>
+                                        <option value="08:00">08:00</option>
+                                        <option value="09:00">09:00</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="12:00">12:00</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="15:00">15:00</option>
+                                        <option value="16:00">16:00</option>
+                                        <option value="17:00">17:00</option>
+                                        <option value="18:00">18:00</option>
+                                        <option value="19:00">19:00</option>
+                                        <option value="20:00">20:00</option>
+                                        <option value="21:00">21:00</option>
+                                        <option value="22:00">22:00</option>
+                                        <option value="23:00">23:00</option>
+                                        <option value="24:00">24:00</option>
+                                    </select>
+                                </div>
+                                <div class="regerv_btn">
+                                    <input type="submit" class="regerv_btn_iner" value="İlaç Ekle" />
+                                </div>
+                            }
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6">
+                <div class="reservation_img">
+                    <img src="/img/reservation.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="our_ability section_padding">
+    <div class="container">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-md-6 col-lg-6">
+                <div class="our_ability_img">
+                    <img src="/img/ability_img.png" alt="">
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-5">
+                <div class="our_ability_member_text">
+                    <h2>Hastalarımız Yaptığımız Her Şeyin Merkezindedir</h2>
+                    <p>
+                        Sunduğumuz tüm sağlık hizmetlerinde, tıbbın ulaştığı en üst düzeyde, güvenilir, hasta
+                        odaklı ve kaliteli hizmet veren, hasta ve çalışan güvenliğini ön planda tutan, hasta haklarına
+                        saygılı, çevreye duyarlı, nitelikli, çok çalışan, yenilikçi ve sürekli kendini
+                        geliştiren öncü bir ekibiz.
+                    </p>
+                    <ul>
+                        <li><span class="ti-mouse"></span>Modern Teknoloji</li>
+                        <li><span class="ti-heart-broken"></span>Birinci Sınıf Hizmetler</li>
+                        <li><span class="ti-package"></span>Tecrübeli Doktorlar</li>
+                        <li><span class="ti-headphone-alt"></span>24 Saat Destek</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

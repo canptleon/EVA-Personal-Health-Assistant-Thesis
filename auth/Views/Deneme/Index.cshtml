@@ -1,0 +1,95 @@
+﻿@model IEnumerable<auth.Models.Users>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.userPersonalName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.userPersonalSurname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.userPassword)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.userPhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.userEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.userImageSource)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.userBirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isActivity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rol.rolName)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userPersonalName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userPersonalSurname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userPassword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userPhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userImageSource)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userBirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isActivity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rol.rolName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.userIdentityNumber }) |
+                @Html.ActionLink("Details", "Details", new { id=item.userIdentityNumber }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.userIdentityNumber })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

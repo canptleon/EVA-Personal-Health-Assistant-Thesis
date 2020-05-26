@@ -1,0 +1,115 @@
+﻿@model auth.Models.Users
+@{
+    ViewBag.Title = "Giris";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="/fontssign/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="/css/stylesign.css">
+</head>
+<body>
+
+
+    <section class="signup" style="margin-top:100px">
+        <div class="container">
+            <div class="signup-content">
+
+                <div class="signup-form">
+
+
+                    <div class="form-horizontal">
+                        <h2 class="form-title">Giriş Yap!</h2>
+                        <hr />
+
+                        @using (Html.BeginForm("Giris", "Member", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <h4>Yerel bir hesapla oturum açın.</h4>
+
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @*@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })*@
+                                <div class="col-md-10">
+                                    <label for="email"><i class="zmdi zmdi-email"></i></label>
+
+                                    @Html.EditorFor(m => m.userEmail, new { htmlAttributes = new { @class = "zmdi zmdi-email", placeholder = "Email" } })
+
+                                    @*@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(m => m.userEmail, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @*@Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })*@
+                                <div class="col-md-10">
+                                    <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+
+                                    @Html.EditorFor(m => m.userPassword, new { htmlAttributes = new { @class = "zmdi zmdi-lock", placeholder = "Şifreniz", type = "password" } })
+
+                                    @*@Html.PasswordFor(m => m.Password, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(m => m.userPassword, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            @*<div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe)
+                    </div>
+                </div>
+            </div>*@
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Oturum aç" class="btn btn-primary" />
+                                </div>
+                            </div>
+
+                            <div class="signup-image">
+
+                                <figure> <img src="~/img/top_service.png" alt="sing up image" style="display: flex;position: absolute;width: 350px;top: 170px;right: 230px;"></figure>
+                            </div>
+
+                            <p>
+                                @Html.ActionLink("Yeni kullanıcı olarak kaydol", "Create", "Member")
+                                @*@Html.ActionLink("Yeni kullanıcı olarak kaydol", "KullanıcıGirisi", "Home")*@
+
+                            </p>
+
+                        }
+</section>
+
+    </div>
+
+    <div class="col-md-4">
+        <section id="socialLoginForm">
+            @*@Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })*@
+        </section>
+    </div>
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <!-- JS -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/js/mainsign.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

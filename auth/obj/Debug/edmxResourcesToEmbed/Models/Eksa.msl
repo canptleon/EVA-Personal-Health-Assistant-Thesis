@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EksaProjectModelStoreContainer" CdmEntityContainer="EksaProjectEntities">
+    <EntitySetMapping Name="analysisAdvice">
+      <EntityTypeMapping TypeName="EksaProjectModel.analysisAdvice">
+        <MappingFragment StoreEntitySet="analysisAdvice">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="analysisTypeId" ColumnName="analysisTypeId" />
+          <ScalarProperty Name="analysisReferenceId" ColumnName="analysisReferenceId" />
+          <ScalarProperty Name="analysisAdviceHigh" ColumnName="analysisAdviceHigh" />
+          <ScalarProperty Name="analysisAdviceLow" ColumnName="analysisAdviceLow" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="analysisInfo">
+      <EntityTypeMapping TypeName="EksaProjectModel.analysisInfo">
+        <MappingFragment StoreEntitySet="analysisInfo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="patientId" ColumnName="patientId" />
+          <ScalarProperty Name="analysisTypeId" ColumnName="analysisTypeId" />
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+          <ScalarProperty Name="analysisSessionId" ColumnName="analysisSessionId" />
+          <ScalarProperty Name="ocrControlled" ColumnName="ocrControlled" />
+          <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="analysisReference">
+      <EntityTypeMapping TypeName="EksaProjectModel.analysisReference">
+        <MappingFragment StoreEntitySet="analysisReference">
+          <ScalarProperty Name="analysisTypeId" ColumnName="analysisTypeId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="minAge" ColumnName="minAge" />
+          <ScalarProperty Name="maxAge" ColumnName="maxAge" />
+          <ScalarProperty Name="minValue" ColumnName="minValue" />
+          <ScalarProperty Name="maxValue" ColumnName="maxValue" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="analysisType">
+      <EntityTypeMapping TypeName="EksaProjectModel.analysisType">
+        <MappingFragment StoreEntitySet="analysisType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="analysisType1" ColumnName="analysisType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="analysisValues">
+      <EntityTypeMapping TypeName="EksaProjectModel.analysisValues">
+        <MappingFragment StoreEntitySet="analysisValues">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="analysisReferenceId" ColumnName="analysisReferenceId" />
+          <ScalarProperty Name="analysisTypeId" ColumnName="analysisTypeId" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="sessionId" ColumnName="sessionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppointmentAvailability">
+      <EntityTypeMapping TypeName="EksaProjectModel.AppointmentAvailability">
+        <MappingFragment StoreEntitySet="AppointmentAvailability">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="startTime" ColumnName="startTime" />
+          <ScalarProperty Name="endTime" ColumnName="endTime" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppointmentHistory">
+      <EntityTypeMapping TypeName="EksaProjectModel.AppointmentHistory">
+        <MappingFragment StoreEntitySet="AppointmentHistory">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="identitiyNumber" ColumnName="identitiyNumber" />
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+          <ScalarProperty Name="hospitalId" ColumnName="hospitalId" />
+          <ScalarProperty Name="sectionId" ColumnName="sectionId" />
+          <ScalarProperty Name="complaint" ColumnName="complaint" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Assay">
+      <EntityTypeMapping TypeName="EksaProjectModel.Assay">
+        <MappingFragment StoreEntitySet="Assay">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="identityNumber" ColumnName="identityNumber" />
+          <ScalarProperty Name="result" ColumnName="result" />
+          <ScalarProperty Name="imageSource" ColumnName="imageSource" />
+          <ScalarProperty Name="diagnose" ColumnName="diagnose" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Doctor">
+      <EntityTypeMapping TypeName="EksaProjectModel.Doctor">
+        <MappingFragment StoreEntitySet="Doctor">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="identityNumber" ColumnName="identityNumber" />
+          <ScalarProperty Name="sectionId" ColumnName="sectionId" />
+          <ScalarProperty Name="hospitalId" ColumnName="hospitalId" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="photoImageSource" ColumnName="photoImageSource" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hospital">
+      <EntityTypeMapping TypeName="EksaProjectModel.Hospital">
+        <MappingFragment StoreEntitySet="Hospital">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="province" ColumnName="province" />
+          <ScalarProperty Name="district" ColumnName="district" />
+          <ScalarProperty Name="adresse" ColumnName="adresse" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Login">
+      <EntityTypeMapping TypeName="EksaProjectModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="identityNumber" ColumnName="identityNumber" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="time" ColumnName="time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logs">
+      <EntityTypeMapping TypeName="EksaProjectModel.Logs">
+        <MappingFragment StoreEntitySet="Logs">
+          <ScalarProperty Name="LogId" ColumnName="LogId" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="CallSite" ColumnName="CallSite" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+          <ScalarProperty Name="InnerException" ColumnName="InnerException" />
+          <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+          <ScalarProperty Name="LoggedOnDate" ColumnName="LoggedOnDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patient">
+      <EntityTypeMapping TypeName="EksaProjectModel.Patient">
+        <MappingFragment StoreEntitySet="Patient">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="identityNumber" ColumnName="identityNumber" />
+          <ScalarProperty Name="assayId" ColumnName="assayId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rol">
+      <EntityTypeMapping TypeName="EksaProjectModel.Rol">
+        <MappingFragment StoreEntitySet="Rol">
+          <ScalarProperty Name="rolId" ColumnName="rolId" />
+          <ScalarProperty Name="rolName" ColumnName="rolName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Section">
+      <EntityTypeMapping TypeName="EksaProjectModel.Section">
+        <MappingFragment StoreEntitySet="Section">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="sectionActive" ColumnName="sectionActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="EksaProjectModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="EksaProjectModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="userIdentityNumber" ColumnName="userIdentityNumber" />
+          <ScalarProperty Name="userPersonalName" ColumnName="userPersonalName" />
+          <ScalarProperty Name="userPersonalSurname" ColumnName="userPersonalSurname" />
+          <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+          <ScalarProperty Name="userPhoneNumber" ColumnName="userPhoneNumber" />
+          <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+          <ScalarProperty Name="userImageSource" ColumnName="userImageSource" />
+          <ScalarProperty Name="userBirthDate" ColumnName="userBirthDate" />
+          <ScalarProperty Name="userRol" ColumnName="userRol" />
+          <ScalarProperty Name="isActivity" ColumnName="isActivity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Medicine">
+      <EntityTypeMapping TypeName="EksaProjectModel.Medicine">
+        <MappingFragment StoreEntitySet="Medicine">
+          <ScalarProperty Name="medicine_name" ColumnName="medicine_name" />
+          <ScalarProperty Name="medicine_id" ColumnName="medicine_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MedicineReminder">
+      <EntityTypeMapping TypeName="EksaProjectModel.MedicineReminder">
+        <MappingFragment StoreEntitySet="MedicineReminder">
+          <ScalarProperty Name="used" ColumnName="used" />
+          <ScalarProperty Name="reuse" ColumnName="reuse" />
+          <ScalarProperty Name="clock" ColumnName="clock" />
+          <ScalarProperty Name="day" ColumnName="day" />
+          <ScalarProperty Name="start" ColumnName="start" />
+          <ScalarProperty Name="medicineId" ColumnName="medicineId" />
+          <ScalarProperty Name="identityNumber" ColumnName="identityNumber" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

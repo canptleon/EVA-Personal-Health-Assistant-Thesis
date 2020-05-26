@@ -1,0 +1,159 @@
+﻿@model auth.Models.Users
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="/fontssign/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="/css/stylesign.css">
+</head>
+
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="main">
+            <section class="signup">
+                <div class="container">
+                    <div class="signup-content">
+                        <div class="signup-form">
+
+
+                            <h2 class="form-title">Kaydol!</h2>
+
+
+
+
+
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+
+                                @*@Html.LabelFor(model => model.userIdentityNumber, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-10">
+                                    <label for="name"><i class="zmdi zmdi-key material-icons-name"></i></label>
+                                    @Html.EditorFor(model => model.userIdentityNumber, new { htmlAttributes = new { @class = "zmdi zmdi-name", placeholder = "ID", type = "number" } })
+                                    @Html.ValidationMessageFor(model => model.userIdentityNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.userPersonalName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-10">
+                                    <label for="name"><i class="zmdi zmdi-account-o material-icons-name"></i></label>
+                                    @Html.EditorFor(model => model.userPersonalName, new { htmlAttributes = new { @class = "zmdi zmdi-name", placeholder = "Adınız", type = "text" } })
+                                    @Html.ValidationMessageFor(model => model.userPersonalName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.userPersonalSurname, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-10">
+                                    <label for="name"><i class="zmdi zmdi-account-o material-icons-name"></i></label>
+                                    @Html.EditorFor(model => model.userPersonalSurname, new { htmlAttributes = new { @class = "zmdi zmdi-name", placeholder = "SoyAdınız", type = "text" } })
+                                    @Html.ValidationMessageFor(model => model.userPersonalSurname, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.userPassword, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-10">
+                                    <label for="name"><i class="zmdi zmdi-lock-outline material-icons-name"></i></label>
+                                    @Html.EditorFor(model => model.userPassword, new { htmlAttributes = new { @class = "zmdi zmdi-lock", placeholder = "Şifreniz", type = "password" } })
+                                    @Html.ValidationMessageFor(model => model.userPassword, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.userPhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-10">
+                                    <label for="name"><i class="zmdi zmdi-phone material-icons-name"></i></label>
+                                    @Html.EditorFor(model => model.userPhoneNumber, new { htmlAttributes = new { @class = "zmdi zmdi-name", placeholder = "Tel NO", type = "tel" } })
+                                    @Html.ValidationMessageFor(model => model.userPhoneNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.userEmail, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-10">
+                                    <label for="name"><i class="zmdi zmdi-email material-icons-name"></i></label>
+                                    @Html.EditorFor(model => model.userEmail, new { htmlAttributes = new { @class = "zmdi zmdi-email", placeholder = "Email", type = "email" } })
+                                    @Html.ValidationMessageFor(model => model.userEmail, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.userImageSource, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-10">
+                                    <label for="name"><i class="zmdi zmdi-image-o material-icons-name"></i></label>
+                                    @Html.EditorFor(model => model.userImageSource, new { htmlAttributes = new { @class = "zmdi zmdi-name", placeholder = "Resim", type = "file" } })
+                                    @Html.ValidationMessageFor(model => model.userImageSource, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.userBirthDate, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-10">
+                                    <label for="name"><i class="zmdi zmdi-calendar material-icons-name"></i></label>
+                                    @Html.EditorFor(model => model.userBirthDate, new { htmlAttributes = new { @class = "zmdi zmdi-name", placeholder = "Doğum Tarihi", type = "date" } })
+                                    @Html.ValidationMessageFor(model => model.userBirthDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.userRol, "userRol", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-10">
+                                    <label for="name"> <i class="zmdi zmdi-sort-amount-asc"></i> </label>
+
+
+                                    @Html.DropDownList("userRol", null, htmlAttributes: new { style = "width:290px; border-radius:5px; margin-left:30px; padding-left:10px;" })
+                                    @Html.ValidationMessageFor(model => model.userRol, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.isActivity, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-10">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.isActivity)
+                                        @Html.ValidationMessageFor(model => model.isActivity, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Hesap Kur" class="btn btn-success" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="signup-image">
+                            @*signup-image.jpg*@
+                            @*<img src="~/img/reservation.png" alt="sing up image" style="border-radius:50px">*@
+                            <figure>  <img src="/img/banner_img.png" alt="sing up image" style="display: flex;position: absolute;width: 500px;top: 250px;right: 200px;"></figure>
+                        </div>
+                        @Html.ActionLink("Zaten hesabım var!", "Giris", "Member", htmlAttributes: new { @class = "form - submit h6", style = "margin-left:130px;font-size:20px;display: flex;position: absolute;top: 825px;right: 350px;" })
+                    </div>
+                    </div>
+            </section>
+        </div>
+    }
+
+    <div>
+        @*@Html.ActionLink("Back to List", "Index")*@
+    </div>
+</body>
+</html>

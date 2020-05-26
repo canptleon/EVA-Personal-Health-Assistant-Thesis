@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="781dc7d500e44920a4e73345c70d27c5" Name="Diagram1">
+        <EntityTypeShape EntityType="EksaProjectModel.analysisAdvice" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EksaProjectModel.analysisInfo" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EksaProjectModel.analysisReference" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EksaProjectModel.analysisType" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EksaProjectModel.analysisValues" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EksaProjectModel.AppointmentAvailability" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EksaProjectModel.AppointmentHistory" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EksaProjectModel.Assay" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EksaProjectModel.Doctor" Width="1.5" PointX="8.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="EksaProjectModel.Hospital" Width="1.5" PointX="6" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EksaProjectModel.Login" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EksaProjectModel.Logs" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EksaProjectModel.Patient" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EksaProjectModel.Rol" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EksaProjectModel.Section" Width="1.5" PointX="6" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EksaProjectModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EksaProjectModel.Users" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="EksaProjectModel.FK_Assay_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="EksaProjectModel.FK_Patient_Assay" ManuallyRouted="false" />
+        <AssociationConnector Association="EksaProjectModel.FK_Doctor_Hospital" ManuallyRouted="false" />
+        <AssociationConnector Association="EksaProjectModel.FK_Doctor_Section" ManuallyRouted="false" />
+        <AssociationConnector Association="EksaProjectModel.FK_Doctor_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="EksaProjectModel.FK_Login_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="EksaProjectModel.FK_Users_Rol" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EksaProjectModel.Medicine" Width="1.5" PointX="3" PointY="12.625" />
+        <EntityTypeShape EntityType="EksaProjectModel.MedicineReminder" Width="1.5" PointX="5.25" PointY="0.75" />
+        <AssociationConnector Association="EksaProjectModel.FK_MedicineReminder_Medicine" />
+        <AssociationConnector Association="EksaProjectModel.FK_MedicineReminder_Users" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

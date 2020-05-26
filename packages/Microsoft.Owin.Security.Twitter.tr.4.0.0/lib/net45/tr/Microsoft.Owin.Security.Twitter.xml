@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Owin.Security.Twitter</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Owin.Security.Twitter.ITwitterAuthenticationProvider">
+      <summary>Kimlik doğrulama işlemi üzerinde geliştirici kontrolünü sağlamak için <see cref="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationMiddleware" /> tarafından çağrılan geri çağırma yöntemlerini belirtir./&amp;amp;gt;</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.ITwitterAuthenticationProvider.ApplyRedirect(Microsoft.Owin.Security.Twitter.TwitterApplyRedirectContext)">
+      <summary>Bir Challenge, Twitter ara yazılımında son noktanın yetkilendirilmesi için yeniden yönlendirmeye neden olduğunda çağrılır</summary>
+      <param name="context">Yeniden yönlendirme URI'sini ve Challenge'ın <see cref="T:Microsoft.Owin.Security.AuthenticationProperties" /> öğesini içerir</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.ITwitterAuthenticationProvider.Authenticated(Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext)">
+      <summary>Twitter bir kullanıcının kimlik bilgilerini başarıyla doğruladığında çağrılır</summary>
+      <returns>Tamamlanan işlemi temsil eden bir <see cref="T:System.Threading.Tasks.Task" />.</returns>
+      <param name="context">Kullanıcı <see cref="T:System.Security.Claims.ClaimsIdentity" /> öğesinin yanı sıra oturum açma oturumu hakkında bilgi içerir.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.ITwitterAuthenticationProvider.ReturnEndpoint(Microsoft.Owin.Security.Twitter.TwitterReturnEndpointContext)">
+      <summary>
+        <see cref="T:System.Security.Claims.ClaimsIdentity" />, yerel tanımlama bilgilerine kaydedilmeden ve tarayıcı, başta istenen URL'ye yönlendirilmeden önce çağrılır.</summary>
+      <returns>Tamamlanan işlemi temsil eden bir <see cref="T:System.Threading.Tasks.Task" />.</returns>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.TwitterApplyRedirectContext">
+      <summary>Bir Challenge, Twitter ara yazılımında son noktanın yetkilendirilmesi için yeniden yönlendirmeye neden olduğunda aktarılan bağlam</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterApplyRedirectContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions,Microsoft.Owin.Security.AuthenticationProperties,System.String)">
+      <summary>Yeni bir bağlam nesnesi oluşturur.</summary>
+      <param name="context">OWIN isteği bağlamı</param>
+      <param name="options">Facebook ara yazılımı seçenekleri</param>
+      <param name="properties">Challenge öğesinin kimlik doğrulaması özellikleri</param>
+      <param name="redirectUri">İlk yönlendirme URI'si</param>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterApplyRedirectContext.Properties">
+      <summary>Challenge öğesinin kimlik doğrulaması özelliklerini alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterApplyRedirectContext.RedirectUri">
+      <summary>Yeniden yönlendirme işlemi için kullanılan URI'yi alır.</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext">
+      <summary>Kullanıcı <see cref="T:System.Security.Claims.ClaimsIdentity" /> öğesinin yanı sıra oturum açma oturumu hakkında bilgi içerir.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext.#ctor(Microsoft.Owin.IOwinContext,System.String,System.String,System.String,System.String)">
+      <summary>Bir <see cref="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext" /> başlatır</summary>
+      <param name="context">OWIN ortamı</param>
+      <param name="userId">Twitter kullanıcı kimliği</param>
+      <param name="screenName">Twitter ekran adı</param>
+      <param name="accessToken">Twitter erişim belirteci</param>
+      <param name="accessTokenSecret">Twitter erişim belirteci gizli bilgisi</param>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext.AccessToken">
+      <summary>Twitter erişim belirtecini alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext.AccessTokenSecret">
+      <summary>Twitter erişim belirteci gizli bilgisini alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext.Identity">
+      <summary>Kullanıcıyı temsil eden <see cref="T:System.Security.Claims.ClaimsIdentity" /> öğesini alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext.Properties">
+      <summary>Ortak kimlik doğrulama özellikleri için bir özellik paketi alır veya ayarlar</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext.ScreenName">
+      <summary>Twitter ekran adını alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext.UserId">
+      <summary>Twitter kullanıcı kimliğini alır</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationMiddleware">
+      <summary>Twitter kullanarak kullanıcıların kimlik doğrulaması için OWIN ara yazılımları</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterAuthenticationMiddleware.#ctor(Microsoft.Owin.OwinMiddleware,Owin.IAppBuilder,Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions)">
+      <summary>Bir <see cref="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationMiddleware" /> başlatır</summary>
+      <param name="next">Çağrılacak OWIN ardışık düzenindeki bir sonraki ara yazılım</param>
+      <param name="app">OWIN uygulaması</param>
+      <param name="options">Ara yazılımın yapılandırma seçenekleri</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterAuthenticationMiddleware.CreateHandler">
+      <summary>Kimlik doğrulamayla ilgili isteklerin işlenmesi için <see cref="T:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler" /> öğesini sağlar.</summary>
+      <returns>Oluşturucuya, <see cref="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions" /> ile yapılandırılmış bir <see cref="T:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler" /> sağlanır.</returns>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions">
+      <summary>Twitter kimlik doğrulaması ara yazılımları seçenekleri.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.#ctor">
+      <summary>
+        <see cref="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions" /> sınıfının yeni bir örneğini başlatır.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.BackchannelCertificateValidator">
+      <summary>Twitter Hesabına ait arka kanal iletişimlerde kullanılan uç noktalarını doğrulamada kullanılan sabit sertifika doğrulayıcısını alır veya ayarlar.</summary>
+      <returns>Sabit sertifika doğrulayıcısı.</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.BackchannelHttpHandler">
+      <summary>Twitter ile iletişimde kullanılan HttpMessageHandler.Değer, bir WebRequestHandler öğesine yönlendirilemediği sürece, bu, BackchannelCertificateValidator ile aynı anda ayarlanamaz.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.BackchannelTimeout">
+      <summary>Twitter ile arka kanal iletişim için zaman aşımı değerini milisaniye cinsinden alır veya ayarlar.</summary>
+      <returns>Arka kanal zaman aşımı.</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.CallbackPath">
+      <summary>User-agent öğesinin döndürüleceği, uygulamanın taban yolu içindeki istek yolu.Bu istek ulaştığında ara yazılım tarafından işlenir.Varsayılan değer "/signin-twitter" şeklindedir.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.Caption">
+      <summary>Kullanıcının, bir oturum açma kullanıcı arabiriminde görüntüleyebileceği metni alır veya ayarlar.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.ConsumerKey">
+      <summary>Twitter ile iletişimde kullanılan tüketici anahtarını alır veya ayarlar.</summary>
+      <returns>Twitter ile iletişimde kullanılan tüketici anahtarı.</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.ConsumerSecret">
+      <summary>İstekleri Twitter'a imzalarken kullanılan tüketici gizli bilgisini alır veya ayarlar.</summary>
+      <returns>İstekleri Twitter'a imzalarken kullanılan tüketici gizli bilgisi.</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.Provider">
+      <summary>Kimlik doğrulama olaylarını işlemede kullanılan <see cref="T:Microsoft.Owin.Security.Twitter.ITwitterAuthenticationProvider" /> öğesini alır veya ayarlar.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.SignInAsAuthenticationType">
+      <summary>Kullanıcıya gerçekten bir <see cref="T:System.Security.Claims.ClaimsIdentity" /> verilmesinden sorumlu olan başka bir kimlik doğrulama ara yazılımının adını alır veya ayarlar.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.StateDataFormat">
+      <summary>Ara yazılım tarafından işlenen verilerin güvenliğinde kullanılan tipi alır veya ayarlar.</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationProvider">
+      <summary>Varsayılan <see cref="T:Microsoft.Owin.Security.Twitter.ITwitterAuthenticationProvider" /> uygulaması.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterAuthenticationProvider.#ctor">
+      <summary>Bir <see cref="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationProvider" /> başlatır</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterAuthenticationProvider.ApplyRedirect(Microsoft.Owin.Security.Twitter.TwitterApplyRedirectContext)">
+      <summary>Bir Challenge, Twitter ara yazılımında son noktanın yetkilendirilmesi için yeniden yönlendirmeye neden olduğunda çağrılır</summary>
+      <param name="context">Yeniden yönlendirme URI'sini ve Challenge'ın <see cref="T:Microsoft.Owin.Security.AuthenticationProperties" /> öğesini içerir</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterAuthenticationProvider.Authenticated(Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext)">
+      <summary>Twitter bir kullanıcının kimlik bilgilerini başarıyla doğruladığında çağrılır</summary>
+      <returns>Tamamlanan işlemi temsil eden bir <see cref="T:System.Threading.Tasks.Task" />.</returns>
+      <param name="context">Kullanıcı <see cref="T:System.Security.Claims.ClaimsIdentity" /> öğesinin yanı sıra oturum açma oturumu hakkında bilgi içerir.</param>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationProvider.OnApplyRedirect">
+      <summary>ApplyRedirect yöntemi çağrıldığında çağrılan temsilciyi alır veya ayarlar.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationProvider.OnAuthenticated">
+      <summary>Authenticated yöntemi çağrıldığında çağrılan işlevi alır veya ayarlar.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationProvider.OnReturnEndpoint">
+      <summary>ReturnEndpoint yöntemi çağrıldığında çağrılan işlevi alır veya ayarlar.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterAuthenticationProvider.ReturnEndpoint(Microsoft.Owin.Security.Twitter.TwitterReturnEndpointContext)">
+      <summary>
+        <see cref="T:System.Security.Claims.ClaimsIdentity" />, yerel tanımlama bilgilerine kaydedilmeden ve tarayıcı, başta istenen URL'ye yönlendirilmeden önce çağrılır.</summary>
+      <returns>Tamamlanan işlemi temsil eden bir <see cref="T:System.Threading.Tasks.Task" />.</returns>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.TwitterReturnEndpointContext">
+      <summary>Ara yazılım sağlayıcılarına bağlam bilgisi sağlar.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterReturnEndpointContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.AuthenticationTicket)">
+      <summary>Yeni bir <see cref="T:Microsoft.Owin.Security.Twitter.TwitterReturnEndpointContext" /> başlatır.</summary>
+      <param name="context">OWIN ortamı</param>
+      <param name="ticket">Kimlik doğrulaması bileti</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.Messages.AccessToken">
+      <summary>Twitter erişim belirteci</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.Messages.AccessToken.#ctor"></member>
+    <member name="P:Microsoft.Owin.Security.Twitter.Messages.AccessToken.ScreenName">
+      <summary>Twitter ekran adını alır veya ayarlar</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.Messages.AccessToken.UserId">
+      <summary>Twitter Kullanıcı kimliğini alır veya ayarlar</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.Messages.RequestToken">
+      <summary>Twitter isteği belirteci</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.Messages.RequestToken.#ctor"></member>
+    <member name="P:Microsoft.Owin.Security.Twitter.Messages.RequestToken.CallbackConfirmed"></member>
+    <member name="P:Microsoft.Owin.Security.Twitter.Messages.RequestToken.Properties">
+      <summary>Ortak kimlik doğrulama özellikleri için bir özellik paketi alır veya ayarlar</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.Messages.RequestToken.Token">
+      <summary>Twitter belirtecini alır veya ayarlar</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.Messages.RequestToken.TokenSecret">
+      <summary>Twitter belirteci gizli bilgisini alır veya ayarlar</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer">
+      <summary>Diğer uygulama bileşenleriyle kullanılabilmeleri için Twitter istek ve erişim belirteçlerini serileştirir ve serilerini kaldırır.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer.#ctor"></member>
+    <member name="M:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer.Deserialize(System.Byte[])">
+      <summary>İstek belirteci serisi kaldırır</summary>
+      <returns>Twitter isteği belirteci</returns>
+      <param name="data">Serileştirilmiş belirteci içeren bayt dizisi</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer.Read(System.IO.BinaryReader)">
+      <summary>Bir bayt serisinden Twitter isteği belirteci okur.<see cref="M:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer.Deserialize(System.Byte[])" /> yöntemi tarafından kullanılır.</summary>
+      <returns>Belirteç</returns>
+      <param name="reader">Belirteç baytlarını okurken kullanılacak okuyucu</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer.Serialize(Microsoft.Owin.Security.Twitter.Messages.RequestToken)">
+      <summary>İstek belirtecini serileştir</summary>
+      <returns>Serileştirilmiş belirteci içeren bayt dizisi</returns>
+      <param name="model">Serileştirilecek belirteç</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer.Write(System.IO.BinaryWriter,Microsoft.Owin.Security.Twitter.Messages.RequestToken)">
+      <summary>Bir bayt serisi olarak bir Twitter isteği belirteci yazar.<see cref="M:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer.Serialize(Microsoft.Owin.Security.Twitter.Messages.RequestToken)" /> yöntemi tarafından kullanılır.</summary>
+      <param name="writer">Belirteci yazarken kullanılacak yazıcı</param>
+      <param name="token">Yazılacak belirteç</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.Messages.Serializers">
+      <summary>İstek belirteci serileştiriciye erişim sağlar</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.Messages.Serializers.RequestToken">
+      <summary>Statik olarak serileştirilebilir bir nesne alır veya ayarlar.Bu özelliğin değeri varsayılan olarak <see cref="T:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer" /> olacaktır.</summary>
+    </member>
+    <member name="T:Owin.TwitterAuthenticationExtensions">
+      <summary>
+        <see cref="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationMiddleware" /> kullanımı için genişletme yöntemleri</summary>
+    </member>
+    <member name="M:Owin.TwitterAuthenticationExtensions.UseTwitterAuthentication(Owin.IAppBuilder,Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions)">
+      <summary>Twitter kullanarak kullanıcı kimlik bilgilerini doğrulayın</summary>
+      <returns>Güncelleştirilmiş <see cref="T:Owin.IAppBuilder" /></returns>
+      <param name="app">Yapılandırma yöntemine iletilen <see cref="T:Owin.IAppBuilder" /></param>
+      <param name="options">Ara yazılım yapılandırma seçenekleri</param>
+    </member>
+    <member name="M:Owin.TwitterAuthenticationExtensions.UseTwitterAuthentication(Owin.IAppBuilder,System.String,System.String)">
+      <summary>Twitter kullanarak kullanıcı kimlik bilgilerini doğrulayın</summary>
+      <returns>Güncelleştirilmiş <see cref="T:Owin.IAppBuilder" /></returns>
+      <param name="app">Yapılandırma yöntemine iletilen <see cref="T:Owin.IAppBuilder" /></param>
+      <param name="consumerKey">Twitter tarafından verilen tüketici anahtarı</param>
+      <param name="consumerSecret">Twitter tarafından verilen tüketici anahtarı gizli bilgisi</param>
+    </member>
+  </members>
+</doc>

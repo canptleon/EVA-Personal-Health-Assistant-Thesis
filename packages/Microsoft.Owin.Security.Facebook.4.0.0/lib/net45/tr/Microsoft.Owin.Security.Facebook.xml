@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Owin.Security.Facebook</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Owin.Security.Facebook.FacebookApplyRedirectContext">
+      <summary>Bir Challenge, Facebook ara yazılımında son noktanın yetkilendirilmesi için yeniden yönlendirmeye neden olduğunda aktarılan bağlam</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Facebook.FacebookApplyRedirectContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions,Microsoft.Owin.Security.AuthenticationProperties,System.String)">
+      <summary>Yeni bir bağlam nesnesi oluşturur.</summary>
+      <param name="context">OWIN isteği bağlamı</param>
+      <param name="options">Facebook ara yazılımı seçenekleri</param>
+      <param name="properties">Challenge öğesinin kimlik doğrulaması özellikleri</param>
+      <param name="redirectUri">İlk yönlendirme URI'si</param>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookApplyRedirectContext.Properties">
+      <summary>Challenge öğesinin kimlik doğrulaması özelliklerini alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookApplyRedirectContext.RedirectUri">
+      <summary>Yeniden yönlendirme işlemi için kullanılan URI'yi alır.</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Facebook.FacebookAuthenticatedContext">
+      <summary>Kullanıcı <see cref="T:System.Security.Claims.ClaimsIdentity" /> öğesinin yanı sıra oturum açma oturumu hakkında bilgi içerir.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Facebook.FacebookAuthenticatedContext.#ctor(Microsoft.Owin.IOwinContext,Newtonsoft.Json.Linq.JObject,System.String,System.String)">
+      <summary>Bir <see cref="T:Microsoft.Owin.Security.Facebook.FacebookAuthenticatedContext" /> başlatır</summary>
+      <param name="context">OWIN ortamı</param>
+      <param name="user">JSON serileştirilmiş kullanıcı</param>
+      <param name="accessToken">Facebook Erişim belirteci</param>
+      <param name="expires">Sürenin dolmasına kalan saniye</param>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticatedContext.AccessToken">
+      <summary>Facebook erişim belirtecini alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticatedContext.Email">
+      <summary>Facebook e-postasını alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticatedContext.ExpiresIn">
+      <summary>Facebook erişim belirteci süre sonu</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticatedContext.Id">
+      <summary>Facebook kullanıcı kimliğini alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticatedContext.Identity">
+      <summary>Kullanıcıyı temsil eden <see cref="T:System.Security.Claims.ClaimsIdentity" /> öğesini alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticatedContext.Link">
+      <summary>
+        <see cref="T:Microsoft.Owin.Security.Facebook.FacebookAuthenticatedContext" /> bağlantısını alır veya ayarlar.</summary>
+      <returns>
+        <see cref="T:Microsoft.Owin.Security.Facebook.FacebookAuthenticatedContext" /> bağlantısı.</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticatedContext.Name">
+      <summary>Kullanıcı adını alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticatedContext.Properties">
+      <summary>Ortak kimlik doğrulama özellikleri için bir özellik paketi alır veya ayarlar</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticatedContext.User">
+      <summary>JSON serileştirilmiş kullanıcıyı alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticatedContext.UserName">
+      <summary>Facebook kullanıcı adını alır</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Facebook.FacebookAuthenticationMiddleware">
+      <summary>Facebook kullanarak kullanıcıların kimlik doğrulaması için OWIN ara yazılımları</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Facebook.FacebookAuthenticationMiddleware.#ctor(Microsoft.Owin.OwinMiddleware,Owin.IAppBuilder,Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions)">
+      <summary>Bir <see cref="T:Microsoft.Owin.Security.Facebook.FacebookAuthenticationMiddleware" /> başlatır</summary>
+      <param name="next">Çağrılacak OWIN ardışık düzenindeki bir sonraki ara yazılım</param>
+      <param name="app">OWIN uygulaması</param>
+      <param name="options">Ara yazılımın yapılandırma seçenekleri</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Facebook.FacebookAuthenticationMiddleware.CreateHandler">
+      <summary>Kimlik doğrulamayla ilgili isteklerin işlenmesi için <see cref="T:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler" /> öğesini sağlar.</summary>
+      <returns>Oluşturucuya, <see cref="T:Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions" /> ile yapılandırılmış bir <see cref="T:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler" /> sağlanır.</returns>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions">
+      <summary>
+        <see cref="T:Microsoft.Owin.Security.Facebook.FacebookAuthenticationMiddleware" /> için yapılandırma seçenekleri</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions.#ctor">
+      <summary>Yeni bir <see cref="T:Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions" /> başlatır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions.AppId">
+      <summary>Facebook-assigned appId değerini alır veya ayarlar</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions.AppSecret">
+      <summary>Facebook-assigned app secret değerini alır veya ayarlar</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions.BackchannelCertificateValidator">
+      <summary>Facebook Hesabına ait arka kanal iletişimlerde kullanılan uç noktalarını doğrulamada kullanılan sabit bir sertifika doğrulayıcısını alır veya ayarlar.</summary>
+      <returns>Sabit sertifika doğrulayıcısı.</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions.BackchannelHttpHandler">
+      <summary>Facebook ile iletişimde kullanılan HttpMessageHandler.Değer, bir WebRequestHandler öğesine yönlendirilemediği sürece, bu, BackchannelCertificateValidator ile aynı anda ayarlanamaz.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions.BackchannelTimeout">
+      <summary>Facebook ile arka kanal iletişim için zaman aşımı değerini milisaniye cinsinden alır veya ayarlar.</summary>
+      <returns>Milisaniye cinsinden arka kanal zaman aşımı.</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions.CallbackPath">
+      <summary>User-agent öğesinin döndürüleceği, uygulamanın taban yolu içindeki istek yolu.Bu istek ulaştığında ara yazılım tarafından işlenir.Varsayılan değer "/signin-facebook" şeklindedir.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions.Caption">
+      <summary>Kullanıcının, bir oturum açma kullanıcı arabiriminde görüntüleyebileceği metni alır veya ayarlar.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions.Provider">
+      <summary>Kimlik doğrulama olaylarını işlemede kullanılan <see cref="T:Microsoft.Owin.Security.Facebook.IFacebookAuthenticationProvider" /> öğesini alır veya ayarlar.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions.Scope">
+      <summary>İstenecek izinlerin bir listesi.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions.SendAppSecretProof">
+      <summary>appsecret_proof öğesinin oluşturulup Facebook API'si çağrılarıyla gönderilip gönderilmeyeceğini alır veya ayarlar.Varsayılan olarak etkindir.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions.SignInAsAuthenticationType">
+      <summary>Kullanıcıya gerçekten bir <see cref="T:System.Security.Claims.ClaimsIdentity" /> verilmesinden sorumlu olan başka bir kimlik doğrulama ara yazılımının adını alır veya ayarlar.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions.StateDataFormat">
+      <summary>Ara yazılım tarafından işlenen verilerin güvenliğinde kullanılan tipi alır veya ayarlar.</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Facebook.FacebookAuthenticationProvider">
+      <summary>Varsayılan <see cref="T:Microsoft.Owin.Security.Facebook.IFacebookAuthenticationProvider" /> uygulaması.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Facebook.FacebookAuthenticationProvider.#ctor">
+      <summary>Bir <see cref="T:Microsoft.Owin.Security.Facebook.FacebookAuthenticationProvider" /> başlatır</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Facebook.FacebookAuthenticationProvider.ApplyRedirect(Microsoft.Owin.Security.Facebook.FacebookApplyRedirectContext)">
+      <summary>Bir Challenge, Facebook ara yazılımında son noktanın yetkilendirilmesi için yeniden yönlendirmeye neden olduğunda çağrılır</summary>
+      <param name="context">Yeniden yönlendirme URI'sini ve Challenge'ın <see cref="T:Microsoft.Owin.Security.AuthenticationProperties" /> öğesini içerir</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Facebook.FacebookAuthenticationProvider.Authenticated(Microsoft.Owin.Security.Facebook.FacebookAuthenticatedContext)">
+      <summary>Facebook bir kullanıcının kimlik bilgilerini başarıyla doğruladığında çağrılır</summary>
+      <returns>Tamamlanan işlemi temsil eden bir <see cref="T:System.Threading.Tasks.Task" />.</returns>
+      <param name="context">Kullanıcı <see cref="T:System.Security.Claims.ClaimsIdentity" /> öğesinin yanı sıra oturum açma oturumu hakkında bilgi içerir.</param>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticationProvider.OnApplyRedirect">
+      <summary>ApplyRedirect yöntemi çağrıldığında çağrılan temsilciyi alır veya ayarlar.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticationProvider.OnAuthenticated">
+      <summary>Authenticated yöntemi çağrıldığında çağrılan işlevi alır veya ayarlar.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Facebook.FacebookAuthenticationProvider.OnReturnEndpoint">
+      <summary>ReturnEndpoint yöntemi çağrıldığında çağrılan işlevi alır veya ayarlar.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Facebook.FacebookAuthenticationProvider.ReturnEndpoint(Microsoft.Owin.Security.Facebook.FacebookReturnEndpointContext)">
+      <summary>
+        <see cref="T:System.Security.Claims.ClaimsIdentity" />, yerel tanımlama bilgilerine kaydedilmeden ve tarayıcı, başta istenen URL'ye yönlendirilmeden önce çağrılır.</summary>
+      <returns>Tamamlanan işlemi temsil eden bir <see cref="T:System.Threading.Tasks.Task" />.</returns>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Facebook.FacebookReturnEndpointContext">
+      <summary>Ara yazılım sağlayıcılarına bağlam bilgisi sağlar.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Facebook.FacebookReturnEndpointContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.AuthenticationTicket)">
+      <param name="context">OWIN ortamı</param>
+      <param name="ticket">Kimlik doğrulaması bileti</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Facebook.IFacebookAuthenticationProvider">
+      <summary>Kimlik doğrulama işlemi üzerinde geliştirici kontrolünü sağlamak için <see cref="T:Microsoft.Owin.Security.Facebook.FacebookAuthenticationMiddleware" /> tarafından çağrılan geri çağırma yöntemlerini belirtir./&amp;amp;gt;</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Facebook.IFacebookAuthenticationProvider.ApplyRedirect(Microsoft.Owin.Security.Facebook.FacebookApplyRedirectContext)">
+      <summary>Bir Challenge, Facebook ara yazılımında son noktanın yetkilendirilmesi için yeniden yönlendirmeye neden olduğunda çağrılır</summary>
+      <param name="context">Yeniden yönlendirme URI'sini ve Challenge'ın <see cref="T:Microsoft.Owin.Security.AuthenticationProperties" /> öğesini içerir</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Facebook.IFacebookAuthenticationProvider.Authenticated(Microsoft.Owin.Security.Facebook.FacebookAuthenticatedContext)">
+      <summary>Facebook bir kullanıcının kimlik bilgilerini başarıyla doğruladığında çağrılır</summary>
+      <returns>Tamamlanan işlemi temsil eden bir <see cref="T:System.Threading.Tasks.Task" />.</returns>
+      <param name="context">Kullanıcı <see cref="T:System.Security.Claims.ClaimsIdentity" /> öğesinin yanı sıra oturum açma oturumu hakkında bilgi içerir.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Facebook.IFacebookAuthenticationProvider.ReturnEndpoint(Microsoft.Owin.Security.Facebook.FacebookReturnEndpointContext)">
+      <summary>
+        <see cref="T:System.Security.Claims.ClaimsIdentity" />, yerel tanımlama bilgilerine kaydedilmeden ve tarayıcı, başta istenen URL'ye yönlendirilmeden önce çağrılır.</summary>
+      <returns>Tamamlanan işlemi temsil eden bir <see cref="T:System.Threading.Tasks.Task" />.</returns>
+    </member>
+    <member name="T:Owin.FacebookAuthenticationExtensions">
+      <summary>Facebook kimlik doğrulaması için genişletme yöntemleri sağlar.</summary>
+    </member>
+    <member name="M:Owin.FacebookAuthenticationExtensions.UseFacebookAuthentication(Owin.IAppBuilder,Microsoft.Owin.Security.Facebook.FacebookAuthenticationOptions)">
+      <summary>OWIN uygulaması için bir Facebook kimlik doğrulaması oluşturur.</summary>
+      <returns>Kimlik doğrulamasını oluşturan <see cref="T:Owin.IAppBuilder" />.</returns>
+      <param name="app">Uygulama oluşturucu.</param>
+      <param name="options">Facebook kimlik doğrulama seçenekleri.</param>
+    </member>
+    <member name="M:Owin.FacebookAuthenticationExtensions.UseFacebookAuthentication(Owin.IAppBuilder,System.String,System.String)">
+      <summary>OWIN uygulaması için bir Facebook kimlik doğrulaması oluşturur.</summary>
+      <returns>Kimlik doğrulamasını oluşturan <see cref="T:Owin.IAppBuilder" />.</returns>
+      <param name="app">Uygulama oluşturucu.</param>
+      <param name="appId">Uygulama kimliği.</param>
+      <param name="appSecret">Uygulama gizli anahtarı.</param>
+    </member>
+  </members>
+</doc>

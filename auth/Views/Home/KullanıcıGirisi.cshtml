@@ -1,0 +1,285 @@
+﻿@model auth.Models.RegisterViewModel
+
+@{
+    /**/
+    ViewBag.Title = "Kaydol";
+
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Sign Up Form by Colorlib</title>
+
+        <!-- Font Icon -->
+        <link rel="stylesheet" href="/fontssign/material-icon/css/material-design-iconic-font.min.css">
+
+        <!-- Main css -->
+        <link rel="stylesheet" href="/css/stylesign.css">
+    </head>
+    <body>
+
+        <div class="main">
+
+            <!-- Sign up form -->
+            <section class="signup">
+                <div class="container">
+                    <div class="signup-content">
+                        <div class="signup-form">
+                            <h2 class="form-title">Kayıt Ol</h2>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @*@Html.EditorFor(model => model.Ad, new { htmlAttributes = new { @class = "zmdi zmdi-account material-icons-name", placeholder = "Adınız" } })
+                                @Html.ValidationMessageFor(model => model.Ad, "", new { @class = "text-danger" })*@
+
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="name" id="name" placeholder="Ad" />
+                            </div>
+                            <div class="form-group">
+                                @*@class = "form-control"*@
+                                @*@Html.EditorFor(model => model.SoyAd, new { htmlAttributes = new { @class = "zmdi zmdi-account material-icons-name", placeholder = "Soy Adınız" } })*@
+                                @*@Html.ValidationMessageFor(model => model.SoyAd, "", new { @class = "text-danger" })*@
+
+
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+
+
+                                <input type="text" name="name" id="name" placeholder="SoyAd" />
+                            </div>
+                            <div class="form-group">
+
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                @*<input type="email" name="email" id="email" placeholder="Email" />*@
+
+
+                                @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "zmdi zmdi-email", placeholder = "Email" } })
+
+
+                                @*@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "zmdi zmdi-email", placeholder = "Email" } })*@
+                                @*@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })*@
+                            </div>
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.Sifre, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                @*@Html.EditorFor(model => model.Sifre, new { htmlAttributes = new { @class = "zmdi zmdi-lock", placeholder = "Şifreniz", type = "password" } })*@
+                                @*@Html.ValidationMessageFor(model => model.Sifre, "", new { @class = "text-danger" })*@
+                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                @*<input type="password" name="pass" id="pass" placeholder="Şifre" />*@
+
+                                @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @class = "zmdi zmdi-lock", placeholder = "Şifreniz", type = "password" } })
+
+
+
+                            </div>
+                            <div class="form-group">
+
+                                @*@Html.LabelFor(model => model.SifreDogrulama, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                @*@Html.EditorFor(model => model.SifreDogrulama, new { htmlAttributes = new { @class = "zmdi zmdi-lock-outline", placeholder = "Şifrenizi tekrar girin", type = "password" } })*@
+                                @*@Html.ValidationMessageFor(model => model.SifreDogrulama, "", new { @class = "text-danger" })*@
+                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="password" name="re_pass" id="re_pass" placeholder="Şifrenizi tekrar girin" />
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                                <label for="agree-term" class="label-agree-term h6"><span><span></span></span>Kullanıcı koşullarını kabul ediyorum.</label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit h6" value="Kayıt ol" />
+                            </div>
+
+                            @*<div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Create" class="btn btn-default" />
+                                    </div>
+                                </div>*@
+                        </div>
+                        <div class="signup-image">
+                            @*signup-image.jpg*@
+                            <figure><img src="~/img/reservation.png" alt="sing up image" style="border-radius:50px"></figure>
+                            <a href="#Already" class="signup-image-link h5"> <i class="zmdi zmdi-account material-icons-name"></i> - Zaten hesabım var!</a>
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>*@
+
+            </section>
+
+            <!-- Sing in  Form -->
+            <section class="sign-in" id="Already">
+                <div class="container">
+                    <div class="signin-content">
+                        <div class="signin-image">
+                            <figure><img src="/img/signin-image.jpg" alt="sing up image"></figure>
+                            <a href="#" class="signup-image-link h5"> <i class="zmdi zmdi-account material-icons-name"></i> - Hesap oluştur</a>
+                        </div>
+
+                        <div class="signin-form">
+                            <h2 class="form-title">Giriş Yap</h2>
+                            <form method="POST" class="register-form" id="login-form">
+                                <div class="form-group">
+                                    <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                    <input type="text" name="your_name" id="your_name" placeholder="Ad" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                    <input type="password" name="your_pass" id="your_pass" placeholder="Şifre" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                    <label for="remember-me" class="label-agree-term h6"><span><span></span></span>Beni hatırla</label>
+                                </div>
+                                <div class="form-group form-button h6">
+                                    <input type="submit" name="signin" id="signin" class="form-submit" value="Giriş yap" />
+                                </div>
+                            </form>
+                            <div class="social-login">
+                                <span class="social-label h6">Var olan hesabınızla girin</span>
+                                <ul class="socials">
+                                    <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                                    <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+                                    <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- JS -->
+        <script src="/vendor/jquery/jquery.min.js"></script>
+        <script src="/js/mainsign.js"></script>
+    </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+@*<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>Login V10</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--===============================================================================================-->
+        <link rel="icon" type="image/png" href="/images/icons/favicon.ico" />
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="/vendor/animsition/css/animsition.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="/vendor/daterangepicker/daterangepicker.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="/css/util.css">
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
+        <!--===============================================================================================-->
+    </head>
+    <body>
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login100 p-t-50 p-b-90">
+                    <form class="login100-form validate-form flex-sb flex-w">
+                        <span class="login100-form-title p-b-51">
+                            Login
+                        </span>
+
+                        <div class="wrap-input100 validate-input m-b-16" data-validate="Username is required">
+                            <input class="input100" type="text" name="username" placeholder="Kullanıcı adı">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input m-b-16" data-validate="Password is required">
+                            <input class="input100" type="password" name="pass" placeholder="Şifre">
+                            <span class="focus-input100"></span>
+                        </div>
+                        <div class="flex-sb-m w-full p-t-3 p-b-24">
+                            <div class="contact100-form-checkbox">
+                                <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                                <label class="label-checkbox100" for="ckb1">
+                                    Beni hatırla
+                                </label>
+                            </div>
+                            <div>
+                                <a href="#" class="txt1">
+                                    Şifreni mi unuttum?
+                                </a>
+                            </div>
+                        </div>
+                        <div class="container-login100-form-btn m-t-17">
+                            <button class="login100-form-btn">
+                                Giriş
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="dropDownSelect1"></div>
+        <!--===============================================================================================-->
+        <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="/vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="/vendor/bootstrap/js/popper.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="/vendor/select2/select2.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="/vendor/daterangepicker/moment.min.js"></script>
+        <script src="/vendor/daterangepicker/daterangepicker.js"></script>
+        <!--===============================================================================================-->
+        <script src="/vendor/countdowntime/countdowntime.js"></script>
+        <!--===============================================================================================-->
+        <script src="/js/main.js"></script>
+    </body>
+    </html>*@
+
+
+
+
+@*<!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>KullanıcıGirisi</title>
+    </head>
+    <body>
+        <div>
+
+
+        </div>
+    </body>
+    </html>*@

@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EksaProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="analysisAdvice">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="analysisTypeId" Type="int" />
+    <Property Name="analysisReferenceId" Type="int" />
+    <Property Name="analysisAdviceHigh" Type="nvarchar" MaxLength="500" />
+    <Property Name="analysisAdviceLow" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="analysisInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="patientId" Type="int" />
+    <Property Name="analysisTypeId" Type="int" />
+    <Property Name="doctorId" Type="int" />
+    <Property Name="analysisSessionId" Type="nvarchar" MaxLength="50" />
+    <Property Name="ocrControlled" Type="bit" />
+    <Property Name="dateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="analysisReference">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="analysisTypeId" Type="int" />
+    <Property Name="name" Type="nvarchar" MaxLength="15" />
+    <Property Name="gender" Type="nvarchar" MaxLength="10" />
+    <Property Name="minAge" Type="int" />
+    <Property Name="maxAge" Type="int" />
+    <Property Name="minValue" Type="float" />
+    <Property Name="maxValue" Type="float" />
+    <Property Name="type" Type="nvarchar" MaxLength="10" />
+    <Property Name="description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="analysisType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="analysisType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="analysisValues">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="analysisReferenceId" Type="int" />
+    <Property Name="analysisTypeId" Type="int" />
+    <Property Name="value" Type="float" />
+    <Property Name="sessionId" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AppointmentAvailability">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="doctorId" Type="int" />
+    <Property Name="date" Type="date" />
+    <Property Name="startTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="endTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="bit" />
+  </EntityType>
+  <EntityType Name="AppointmentHistory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="identitiyNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="doctorId" Type="int" />
+    <Property Name="hospitalId" Type="int" />
+    <Property Name="sectionId" Type="int" />
+    <Property Name="complaint" Type="nvarchar" MaxLength="100" />
+    <Property Name="date" Type="date" />
+  </EntityType>
+  <EntityType Name="Assay">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="identityNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="result" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="imageSource" Type="nvarchar" MaxLength="100" />
+    <Property Name="diagnose" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Doctor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="identityNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="sectionId" Type="int" Nullable="false" />
+    <Property Name="hospitalId" Type="int" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="surname" Type="nvarchar" MaxLength="50" />
+    <Property Name="photoImageSource" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Hospital">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="province" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="district" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="adresse" Type="nvarchar" MaxLength="300" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="token" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="identityNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="token" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="time" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Logs">
+    <Key>
+      <PropertyRef Name="LogId" />
+    </Key>
+    <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Level" Type="varchar(max)" Nullable="false" />
+    <Property Name="CallSite" Type="varchar(max)" Nullable="false" />
+    <Property Name="Type" Type="varchar(max)" Nullable="false" />
+    <Property Name="Message" Type="varchar(max)" Nullable="false" />
+    <Property Name="StackTrace" Type="varchar(max)" Nullable="false" />
+    <Property Name="InnerException" Type="varchar(max)" Nullable="false" />
+    <Property Name="AdditionalInfo" Type="varchar(max)" Nullable="false" />
+    <Property Name="LoggedOnDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Medicine">
+    <Key>
+      <PropertyRef Name="medicine_id" />
+    </Key>
+    <Property Name="medicine_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="medicine_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MedicineReminder">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="identityNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="medicineId" Type="int" Nullable="false" />
+    <Property Name="start" Type="datetime" Nullable="false" />
+    <Property Name="day" Type="int" Nullable="false" />
+    <Property Name="clock" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="reuse" Type="int" Nullable="false" />
+    <Property Name="used" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="identityNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="assayId" Type="int" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="rolId" />
+    </Key>
+    <Property Name="rolId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rolName" Type="nchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Section">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="sectionActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="userIdentityNumber" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userIdentityNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="userPersonalName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="userPersonalSurname" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="userPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="userPhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="userEmail" Type="nvarchar" MaxLength="600" Nullable="false" />
+    <Property Name="userImageSource" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="userBirthDate" Type="datetime" Nullable="false" />
+    <Property Name="userRol" Type="int" Nullable="false" />
+    <Property Name="isActivity" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Assay_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Assay" Type="Self.Assay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userIdentityNumber" />
+      </Principal>
+      <Dependent Role="Assay">
+        <PropertyRef Name="identityNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Doctor_Hospital">
+    <End Role="Hospital" Type="Self.Hospital" Multiplicity="1" />
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hospital">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Doctor">
+        <PropertyRef Name="hospitalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Doctor_Section">
+    <End Role="Section" Type="Self.Section" Multiplicity="1" />
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Doctor">
+        <PropertyRef Name="sectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Doctor_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userIdentityNumber" />
+      </Principal>
+      <Dependent Role="Doctor">
+        <PropertyRef Name="identityNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Login_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Login" Type="Self.Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userIdentityNumber" />
+      </Principal>
+      <Dependent Role="Login">
+        <PropertyRef Name="identityNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicineReminder_Medicine">
+    <End Role="Medicine" Type="Self.Medicine" Multiplicity="1" />
+    <End Role="MedicineReminder" Type="Self.MedicineReminder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medicine">
+        <PropertyRef Name="medicine_id" />
+      </Principal>
+      <Dependent Role="MedicineReminder">
+        <PropertyRef Name="medicineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicineReminder_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="MedicineReminder" Type="Self.MedicineReminder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userIdentityNumber" />
+      </Principal>
+      <Dependent Role="MedicineReminder">
+        <PropertyRef Name="identityNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_Assay">
+    <End Role="Assay" Type="Self.Assay" Multiplicity="0..1" />
+    <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assay">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Patient">
+        <PropertyRef Name="assayId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="rolId" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="userRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EksaProjectModelStoreContainer">
+    <EntitySet Name="analysisAdvice" EntityType="Self.analysisAdvice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="analysisInfo" EntityType="Self.analysisInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="analysisReference" EntityType="Self.analysisReference" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="analysisType" EntityType="Self.analysisType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="analysisValues" EntityType="Self.analysisValues" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AppointmentAvailability" EntityType="Self.AppointmentAvailability" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AppointmentHistory" EntityType="Self.AppointmentHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Assay" EntityType="Self.Assay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hospital" EntityType="Self.Hospital" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Medicine" EntityType="Self.Medicine" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MedicineReminder" EntityType="Self.MedicineReminder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Assay_Users" Association="Self.FK_Assay_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Assay" EntitySet="Assay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Doctor_Hospital" Association="Self.FK_Doctor_Hospital">
+      <End Role="Hospital" EntitySet="Hospital" />
+      <End Role="Doctor" EntitySet="Doctor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Doctor_Section" Association="Self.FK_Doctor_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="Doctor" EntitySet="Doctor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Doctor_Users" Association="Self.FK_Doctor_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Doctor" EntitySet="Doctor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Login_Users" Association="Self.FK_Login_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Login" EntitySet="Login" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicineReminder_Medicine" Association="Self.FK_MedicineReminder_Medicine">
+      <End Role="Medicine" EntitySet="Medicine" />
+      <End Role="MedicineReminder" EntitySet="MedicineReminder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicineReminder_Users" Association="Self.FK_MedicineReminder_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="MedicineReminder" EntitySet="MedicineReminder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_Assay" Association="Self.FK_Patient_Assay">
+      <End Role="Assay" EntitySet="Assay" />
+      <End Role="Patient" EntitySet="Patient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Rol" Association="Self.FK_Users_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

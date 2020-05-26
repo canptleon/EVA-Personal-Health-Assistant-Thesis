@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Merhaba Semih ", "Home", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+
+                @*@Html.ActionLink("Merhaba " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+            </li>
+            <li><a style="margin-left:0px;" href="javascript:document.getElementById('logoutForm').submit()">Oturumu kapat</a></li>
+        </ul>
+    }
+}
+else
+{
+    @*<ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Kaydol", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Oturum aç", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>*@
+
+    @*<li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
+               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Giriş
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
+                @Html.ActionLink("Kaydol", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                @Html.ActionLink("Oturum aç", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+            </div>
+
+        </li>*@
+}
+
+@if (Session["Kullanıcı"] == null)
+{
+    <li class="nav-item">
+        @Html.ActionLink("Kaydol", "Create", "Member", routeValues: null, htmlAttributes: new { id = "registerLink", style = "margin-left:10px; font-size:17px" })
+    </li>
+    <li class="nav-item">
+        @Html.ActionLink("Giriş", "Giris", "Member", routeValues: null, htmlAttributes: new { id = "loginLink", style = "margin-left:20px; font-size:17px" })
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        @Html.ActionLink("Çıkış", "Çıkış", "Member", routeValues: null, htmlAttributes: new { id = "loginLink", style = "margin-left:20px; font-size:17px" })
+    </li>
+}
+
+
+
+

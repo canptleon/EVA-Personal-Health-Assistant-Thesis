@@ -1,0 +1,87 @@
+﻿@model auth.Models.IndexViewModel
+@{
+    ViewBag.Title = "Yönet";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Hesap ayarlarınızı değiştirin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Parola:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Parolanızı değiştirin", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Oluştur", "SetPassword")
+            }
+            ]
+        </dd>
+        <dt>Dışarıdan Oturum Açma:</dt>
+        <dd>
+            @Model.Logins.Count [
+            @Html.ActionLink("Yönet", "ManageLogins") ]
+        </dd>
+        @*
+            Telefon Numaraları, iki öğeli kimlik doğrulama sisteminde ikinci öğe olarak kullanılabilir.
+             
+             Bu ASP.NET uygulamasını SMS kullanarak iki öğeli kimlik doğrulamasını destekleyecek şekilde
+                ayarlama konusunda ayrıntılı bilgi
+             
+             İki öğeli kimlik doğrulamayı ayarladıktan sonra aşağıdaki blokları açıklama durumundan çıkarın
+        *@
+        @*  
+            <dt>Telefon Numarası:</dt>
+            <dd>
+                @(Model.PhoneNumber ?? "Yok")
+                @if (Model.PhoneNumber != null)
+                {
+                    <br />
+                    <text>[&nbsp;&nbsp;@Html.ActionLink("Değiştir", "AddPhoneNumber")&nbsp;&nbsp;]</text>
+                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>[<input type="submit" value="Kaldır" class="btn-link" />]</text>
+                    }
+                }
+                else
+                {
+                    <text>[&nbsp;&nbsp;@Html.ActionLink("Ekle", "AddPhoneNumber")
+                }
+            </dd>
+        *@
+        <dt>İki Öğeli Kimlik Doğrulama:</dt>
+        <dd>
+            <p>
+                Yapılandırılmış iki öğeli kimlik doğrulama sağlayıcısı yok. Bu ASP.NET uygulamasını iki öğeli kimlik doğrulamayı destekleyecek şekilde ayarlama
+                konusunda ayrıntılı bilgi için <a href="https://go.microsoft.com/fwlink/?LinkId=403804">bu makaleye</a>bakın.
+            </p>
+            @*@if (Model.TwoFactor)
+                {
+                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Etkinleştirildi
+                        <input type="submit" value="Devre dışı bırak" class="btn btn-link" />
+                        </text>
+                    }
+                }
+                else
+                {
+                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Devre dışı bırakıldı
+                        <input type="submit" value="Etkinleştir" class="btn btn-link" />
+                        </text>
+                    }
+                }*@
+        </dd>
+    </dl>
+</div>

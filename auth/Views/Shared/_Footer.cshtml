@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "_Footer";
+}
+
+<footer class="footer-area">
+    <div class="footer section_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-2 col-sm-4 mb-4 mb-xl-0 single-footer-widget">
+                    <h4>Ek Hizmetler</h4>
+                    <ul>
+
+                        @Html.ActionLink("Randevu", "RandevuAl", "Home", new { @class = "nav-link" })
+                        @Html.ActionLink("ilacHatırlatıcı", "ilacHatırlatıcı", "Home", new { @class = "nav-link" })
+                        @Html.ActionLink("TahlilSorgulama", "TahlilSorgulama", "Home", new { @class = "nav-link" })
+                        @Html.ActionLink("Kitle Endeksi", "KitleEndeksi", "Home", new { @class = "nav-link" })
+
+                    </ul>
+                </div>
+                <div class="col-xl-2 col-sm-4 mb-4 mb-xl-0 single-footer-widget">
+                    <h4>Kısayollar</h4>
+                    <ul>
+                        @Html.ActionLink("Hakkında", "Hakkında", "Home", new { @class = "nav-link" })
+                        @Html.ActionLink("BizeUlas", "BizeUlas", "Home", new { @class = "nav-link" })
+                    </ul>
+                </div>
+                <div class="col-xl-2 col-sm-4 mb-4 mb-xl-0 single-footer-widget">
+                    <h4>Keşfet</h4>
+                    <ul>
+                        @Html.ActionLink("Haberler", "BlogSayfası", "Home", new { @class = "nav-link" })
+                        @Html.ActionLink("Blog", "SingleBlogSayfası", "Home", new { @class = "nav-link" })
+                        @Html.ActionLink("Doktorlar", "Doktorlar", "Home", new { @class = "nav-link" })
+
+                    </ul>
+                </div>
+                <div class="col-xl-2 col-sm-4 mb-4 mb-xl-0 single-footer-widget">
+
+                </div>
+                <div class="col-xl-4 col-sm-8 col-md-8 mb-4 mb-xl-0 single-footer-widget">
+                    <h4>Haberler</h4>
+                    <p>EVA'daki son gelişmelerden anında haberdar olmak için email adresinizi girmeniz yeterli.</p>
+                    <div class="form-wrap" id="mc_embed_signup">
+                        <form target="_blank"
+                              action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                              method="get" class="form-inline">
+                            <input class="form-control" name="EMAIL" placeholder="Email Adresinizi Giriniz"
+                                   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Adresinizi Giriniz'"
+                                   required="" type="email">
+                            <button class="click-btn btn btn-default text-uppercase">Abone ol</button>
+                            <div style="position: absolute; left: -5000px;">
+                                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value=""
+                                       type="text">
+                            </div>
+                            <div class="info"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright_part">
+        <div class="container">
+            <div class="row align-items-center">
+                <p class="footer-text m-0 col-lg-8 col-md-12">
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> Tüm haklar saklıdır. | Bu tasarım EVA Sağlık Asistanı ekibi tarafından yapılmıştır.
+                </p>
+                <div class="col-lg-4 col-md-12 text-center text-lg-right footer-social">
+                    <a href="#"><i class="ti-facebook"></i></a>
+                    <a href="#"><i class="ti-twitter"></i></a>
+                    <a href="#"><i class="ti-instagram"></i></a>
+                    <a href="#"><i class="ti-skype"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

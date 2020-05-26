@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EksaProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="analysisAdvice">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="analysisTypeId" Type="Int32" />
+    <Property Name="analysisReferenceId" Type="Int32" />
+    <Property Name="analysisAdviceHigh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="analysisAdviceLow" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="analysisInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="patientId" Type="Int32" />
+    <Property Name="analysisTypeId" Type="Int32" />
+    <Property Name="doctorId" Type="Int32" />
+    <Property Name="analysisSessionId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ocrControlled" Type="Boolean" />
+    <Property Name="dateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="analysisReference">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="minAge" Type="Int32" />
+    <Property Name="maxAge" Type="Int32" />
+    <Property Name="minValue" Type="Double" />
+    <Property Name="maxValue" Type="Double" />
+    <Property Name="type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="analysisTypeId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="analysisType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="analysisType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="analysisValues">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="analysisReferenceId" Type="Int32" />
+    <Property Name="analysisTypeId" Type="Int32" />
+    <Property Name="value" Type="Double" />
+    <Property Name="sessionId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AppointmentAvailability">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="doctorId" Type="Int32" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+    <Property Name="startTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="endTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="AppointmentHistory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="identitiyNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="doctorId" Type="Int32" />
+    <Property Name="hospitalId" Type="Int32" />
+    <Property Name="sectionId" Type="Int32" />
+    <Property Name="complaint" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Assay">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="identityNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="result" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="imageSource" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="diagnose" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Assay_Users" FromRole="Assay" ToRole="Users" />
+    <NavigationProperty Name="Patient" Relationship="Self.FK_Patient_Assay" FromRole="Assay" ToRole="Patient" />
+  </EntityType>
+  <EntityType Name="Doctor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="identityNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sectionId" Type="Int32" Nullable="false" />
+    <Property Name="hospitalId" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="photoImageSource" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Hospital" Relationship="Self.FK_Doctor_Hospital" FromRole="Doctor" ToRole="Hospital" />
+    <NavigationProperty Name="Section" Relationship="Self.FK_Doctor_Section" FromRole="Doctor" ToRole="Section" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Doctor_Users" FromRole="Doctor" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Hospital">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="province" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="district" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="adresse" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Doctor" Relationship="Self.FK_Doctor_Hospital" FromRole="Hospital" ToRole="Doctor" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="token" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="identityNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Login_Users" FromRole="Login" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Logs">
+    <Key>
+      <PropertyRef Name="LogId" />
+    </Key>
+    <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Level" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CallSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="InnerException" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AdditionalInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LoggedOnDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="identityNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="assayId" Type="Int32" />
+    <NavigationProperty Name="Assay" Relationship="Self.FK_Patient_Assay" FromRole="Patient" ToRole="Assay" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="rolId" />
+    </Key>
+    <Property Name="rolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rolName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Rol" FromRole="Rol" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Section">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sectionActive" Type="Boolean" />
+    <NavigationProperty Name="Doctor" Relationship="Self.FK_Doctor_Section" FromRole="Section" ToRole="Doctor" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="userIdentityNumber" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userIdentityNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userPersonalName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userPersonalSurname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userPhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userEmail" Type="String" MaxLength="600" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userImageSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userBirthDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="userRol" Type="Int32" Nullable="false" />
+    <Property Name="isActivity" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Assay" Relationship="Self.FK_Assay_Users" FromRole="Users" ToRole="Assay" />
+    <NavigationProperty Name="Doctor" Relationship="Self.FK_Doctor_Users" FromRole="Users" ToRole="Doctor" />
+    <NavigationProperty Name="Login" Relationship="Self.FK_Login_Users" FromRole="Users" ToRole="Login" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK_Users_Rol" FromRole="Users" ToRole="Rol" />
+    <NavigationProperty Name="MedicineReminder" Relationship="EksaProjectModel.FK_MedicineReminder_Users" FromRole="Users" ToRole="MedicineReminder" />
+  </EntityType>
+  <Association Name="FK_Assay_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Assay" Type="Self.Assay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userIdentityNumber" />
+      </Principal>
+      <Dependent Role="Assay">
+        <PropertyRef Name="identityNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_Assay">
+    <End Role="Assay" Type="Self.Assay" Multiplicity="0..1" />
+    <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assay">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Patient">
+        <PropertyRef Name="assayId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Doctor_Hospital">
+    <End Role="Hospital" Type="Self.Hospital" Multiplicity="1" />
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hospital">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Doctor">
+        <PropertyRef Name="hospitalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Doctor_Section">
+    <End Role="Section" Type="Self.Section" Multiplicity="1" />
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Doctor">
+        <PropertyRef Name="sectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Doctor_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userIdentityNumber" />
+      </Principal>
+      <Dependent Role="Doctor">
+        <PropertyRef Name="identityNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Login_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Login" Type="Self.Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userIdentityNumber" />
+      </Principal>
+      <Dependent Role="Login">
+        <PropertyRef Name="identityNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="rolId" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="userRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EksaProjectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="analysisAdvice" EntityType="Self.analysisAdvice" />
+    <EntitySet Name="analysisInfo" EntityType="Self.analysisInfo" />
+    <EntitySet Name="analysisReference" EntityType="Self.analysisReference" />
+    <EntitySet Name="analysisType" EntityType="Self.analysisType" />
+    <EntitySet Name="analysisValues" EntityType="Self.analysisValues" />
+    <EntitySet Name="AppointmentAvailability" EntityType="Self.AppointmentAvailability" />
+    <EntitySet Name="AppointmentHistory" EntityType="Self.AppointmentHistory" />
+    <EntitySet Name="Assay" EntityType="Self.Assay" />
+    <EntitySet Name="Doctor" EntityType="Self.Doctor" />
+    <EntitySet Name="Hospital" EntityType="Self.Hospital" />
+    <EntitySet Name="Login" EntityType="Self.Login" />
+    <EntitySet Name="Logs" EntityType="Self.Logs" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" />
+    <EntitySet Name="Section" EntityType="Self.Section" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_Assay_Users" Association="Self.FK_Assay_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Assay" EntitySet="Assay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_Assay" Association="Self.FK_Patient_Assay">
+      <End Role="Assay" EntitySet="Assay" />
+      <End Role="Patient" EntitySet="Patient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Doctor_Hospital" Association="Self.FK_Doctor_Hospital">
+      <End Role="Hospital" EntitySet="Hospital" />
+      <End Role="Doctor" EntitySet="Doctor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Doctor_Section" Association="Self.FK_Doctor_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="Doctor" EntitySet="Doctor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Doctor_Users" Association="Self.FK_Doctor_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Doctor" EntitySet="Doctor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Login_Users" Association="Self.FK_Login_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Login" EntitySet="Login" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Rol" Association="Self.FK_Users_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="Medicine" EntityType="EksaProjectModel.Medicine" />
+    <EntitySet Name="MedicineReminder" EntityType="EksaProjectModel.MedicineReminder" />
+    <AssociationSet Name="FK_MedicineReminder_Medicine" Association="EksaProjectModel.FK_MedicineReminder_Medicine">
+      <End Role="Medicine" EntitySet="Medicine" />
+      <End Role="MedicineReminder" EntitySet="MedicineReminder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicineReminder_Users" Association="EksaProjectModel.FK_MedicineReminder_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="MedicineReminder" EntitySet="MedicineReminder" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Medicine">
+    <Key>
+      <PropertyRef Name="medicine_id" />
+    </Key>
+    <Property Name="medicine_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="medicine_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MedicineReminder" Relationship="EksaProjectModel.FK_MedicineReminder_Medicine" FromRole="Medicine" ToRole="MedicineReminder" />
+  </EntityType>
+  <EntityType Name="MedicineReminder">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="identityNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="medicineId" Type="Int32" Nullable="false" />
+    <Property Name="start" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="day" Type="Int32" Nullable="false" />
+    <Property Name="clock" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="reuse" Type="Int32" Nullable="false" />
+    <Property Name="used" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Medicine" Relationship="EksaProjectModel.FK_MedicineReminder_Medicine" FromRole="MedicineReminder" ToRole="Medicine" />
+    <NavigationProperty Name="Users" Relationship="EksaProjectModel.FK_MedicineReminder_Users" FromRole="MedicineReminder" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK_MedicineReminder_Medicine">
+    <End Type="EksaProjectModel.Medicine" Role="Medicine" Multiplicity="1" />
+    <End Type="EksaProjectModel.MedicineReminder" Role="MedicineReminder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medicine">
+        <PropertyRef Name="medicine_id" />
+      </Principal>
+      <Dependent Role="MedicineReminder">
+        <PropertyRef Name="medicineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicineReminder_Users">
+    <End Type="EksaProjectModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="EksaProjectModel.MedicineReminder" Role="MedicineReminder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userIdentityNumber" />
+      </Principal>
+      <Dependent Role="MedicineReminder">
+        <PropertyRef Name="identityNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

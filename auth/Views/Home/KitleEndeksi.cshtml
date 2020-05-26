@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "KitleEndeksi";
+}
+
+<section class="breadcrumb breadcrumb_bg" style="margin-top:100px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb_iner">
+                    <div class="breadcrumb_iner_item">
+                        <h2>Vücut Kitle Endeksi Hesapla</h2>
+                        <p>Ana Sayfa<span>/</span>Vücut Kitle Endeksi Hesapla</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<section class="regervation_part">
+    <div class="container">
+        <div class="row align-items-center regervation_content">
+            <div class="col-lg-7 col-md-6">
+                <div class="regervation_part_iner">
+                    <form>
+                        <h2>Vücut Kitle Endeksi Hesapla</h2>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <select class="form-control" id="Select" name="inputCinsiyet">
+                                    <option value="1">Kadın</option>
+                                    <option value="2">Erkek</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" name="inputBoy" placeholder="Boyunuz" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" name="inputKilo" placeholder="Kilonuz" required>
+                            </div>
+                        </div>
+                        <div class="regerv_btn">
+                            <button type="submit" id="btnHesapla" class="btn btn-success">Hesapla</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6">
+                <div class="reservation_img">
+                    <img src="/img/kitle.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script>
+    $(document).ready(function ()
+    {
+        var kilo, boy;
+        $("#btnHesapla").click(function ()
+        {
+            debugger
+            boy = $("input[name=inputBoy]").val();
+            kilo = $("input[name=inputKilo]").val();
+            var sonuc = kilo / ((boy / 100) * (boy / 100));
+
+            if (sonuc > 0)
+            {
+                let durum = "";
+                if (sonuc <= 18.5)
+                {
+                    durum = 'Kilonuz düşük';               
+                    
+                }
+                else if (sonuc <= 24.9)
+                {
+                    durum = 'İdeal Kilodasınız';
+                }
+                else if (sonuc <= 29.9)
+                {
+                    durum = 'İdeal Kilolunun Üzerindesiniz';
+                }
+                else if (sonuc < 40)
+                {
+                    durum = 'Obezsiniz';
+                }
+                else if (sonuc >= 40)
+                {
+                    durum = 'Aşırı Obezsiniz';
+                }           
+                Swal.fire(
+                    {
+                        timer: 30000,
+                        title: durum,
+                        text: sonuc.toString().substr(0, 4),
+                        icon: 'success'
+                    })
+            }
+            else
+            {
+                Swal.fire(
+                    'Boy ve Kilonuzu Kontrol Ediniz.',
+                     '',
+                    'error'
+                )
+            }
+        })
+    })
+</script>
+
+

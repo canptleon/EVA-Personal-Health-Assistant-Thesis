@@ -1,0 +1,174 @@
+﻿@model auth.Models.Doctors
+@{
+    ViewBag.Title = "Doktor";
+}
+
+<section class="breadcrumb_part">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb_iner">
+                    <div class="breadcrumb_iner_item">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="doctor_part section_padding single_doctor_part">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8">
+                <div class="section_tittle text-center">
+                    <h2>Tebrübeli Doktor Kadromuz</h2>
+                    <p>Tüm doktorlarımız alanlarında uzman olup sizlere yardımcı olmak için hazırlar.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var itemDoctor in Model.Doctor)
+            {
+                if (itemDoctor.id > 3)
+                {
+                    foreach (var itemSection in Model.Section)
+                    {
+                        if (itemDoctor.sectionId == itemSection.id)
+                        {
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="single_blog_item">
+                                    <div class="single_blog_img">
+                                        <img src="~/img/doctor/doktor4.jpg" alt="doctor">
+                                        @*<img src="@itemDoctor.photoImageSource" alt="doctor">*@
+                                    </div>
+                                            <div class="single_text">
+                                                <div class="single_blog_text">
+                                                    <h3>@itemDoctor.title @itemDoctor.name @itemDoctor.surname</h3>
+                                                    <p>@itemSection.name</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+
+                    }
+                </div>
+            </div>
+        </section>
+
+        <section class="feature_part padding_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-md-4 align-self-center">
+                        <div class="single_feature_text ">
+                            <h2>Özel Hizmetler Sunuyoruz</h2>
+                            <p>
+                                İster kendinize hesap oluşturun, ister oluşturmayın.Birden fazla
+                                ek hizmetten faydalanabilir, bize gelişmemiz için geri
+                                bildirimlerde bulunabilirsiniz.
+                            </p>
+                            @Html.ActionLink("Hizmetler", "ilacHatırlatıcı", "Home", new { @class = "nav-link btn_2" })
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                        <div class="feature_item">
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="single_feature">
+                                        <div class="single_feature_part">
+                                            <span class="single_feature_icon">
+                                                <img src="/img/icon/feature_1.svg"
+                                                     alt="">
+                                            </span>
+                                            <h4>İlaç Hatırlatıcı</h4>
+                                            <p>Açıklama 1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="single_feature">
+                                        <div class="single_feature_part">
+                                            <span class="single_feature_icon">
+                                                <img src="/img/icon/feature_2.svg"
+                                                     alt="">
+                                            </span>
+                                            <h4>Tahlil Sorgulama</h4>
+                                            <p>Açıklama 2</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="single_feature">
+                                        <div class="single_feature_part">
+                                            <span class="single_feature_icon">
+                                                <img src="/img/icon/feature_2.svg"
+                                                     alt="">
+                                            </span>
+                                            <h4>Hizmet 3</h4>
+                                            <p>Açıklama 3</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="single_feature">
+                                        <div class="single_feature_part">
+                                            <span class="single_feature_icon">
+                                                <img src="/img/icon/feature_1.svg"
+                                                     alt="">
+                                            </span>
+                                            <h4>Hizmet 4</h4>
+                                            <p>Açıklama 4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="review_part">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="client_review_part owl-carousel">
+                            <div class="client_review_single">
+                                <img src="/img/Quote.png" class="Quote" alt="quote">
+                                <div class="client_review_text">
+                                    <p>Sağlıklı yaşasa bile, dengesiz düşünen insan strese düşer, sinir sistemi tahrip olur.</p>
+                                </div>
+                                <h4>Muhammed Bozdağ, <span>Türk düşünür</span></h4>
+                            </div>
+                            <div class="client_review_single">
+                                <img src="/img/Quote.png" class="Quote" alt="quote">
+                                <div class="client_review_text media-body">
+                                    <p>Vücuduna tükenmez bir sadakatle bak. Gönül, yalnızca bu gözler aracılığıyla görür ve o gözlerin feri yoksa bütün dünya bulanık görünür…</p>
+                                </div>
+                                <h4>Goethe, <span>Ünlü düşünür</span></h4>
+                            </div>
+                            <div class="client_review_single">
+                                <img src="/img/Quote.png" class="Quote" alt="quote">
+                                <div class="client_review_text">
+                                    <p>
+                                        Bugün temiz hava aldığım ve temiz su içtiğim için minnettarım.
+                                        Beni seven dostlarım ve ailem olduğu için minnettarım.
+                                        Sağlıklı bir bedenim, yaratıcı bir zihnim ve ilginç bir işim olduğu için minnettarım…
+                                    </p>
+                                </div>
+                                <h4>Arielle Ford, <span>Ünlü düşünür</span></h4>
+                            </div>
+                            <div class="client_review_single">
+                                <img src="/img/Quote.png" class="Quote" alt="quote">
+                                <div class="client_review_text">
+                                    <p>Hareket eksikliği her insanda iyi kondisyonu yok eder, hareket ve metodolojik fiziksel egzersiz ise onu korur ve sürdürebilmesini sağlar.</p>
+                                </div>
+                                <h4>Eflatun, <span>Ünlü düşünür</span></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>

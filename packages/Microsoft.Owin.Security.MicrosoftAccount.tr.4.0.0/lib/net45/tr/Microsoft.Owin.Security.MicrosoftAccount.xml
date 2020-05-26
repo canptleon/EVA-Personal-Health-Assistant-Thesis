@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Owin.Security.MicrosoftAccount</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Owin.Security.MicrosoftAccount.IMicrosoftAccountAuthenticationProvider">
+      <summary>Kimlik doğrulama işlemi üzerinde geliştirici kontrolünü sağlamak için <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationMiddleware" /> tarafından çağrılan geri çağırma yöntemlerini belirtir./&amp;amp;gt;</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.IMicrosoftAccountAuthenticationProvider.ApplyRedirect(Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountApplyRedirectContext)">
+      <summary>Bir Challenge, Microsoft ara yazılımında son noktanın yetkilendirilmesi için yeniden yönlendirmeye neden olduğunda çağrılır</summary>
+      <param name="context">Yeniden yönlendirme URI'sini ve Challenge'ın <see cref="T:Microsoft.Owin.Security.AuthenticationProperties" /> öğesini içerir</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.IMicrosoftAccountAuthenticationProvider.Authenticated(Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext)">
+      <summary>Microsoft bir kullanıcının kimlik bilgilerini başarıyla doğruladığında çağrılır</summary>
+      <returns>Tamamlanan işlemi temsil eden bir <see cref="T:System.Threading.Tasks.Task" />.</returns>
+      <param name="context">Kullanıcı <see cref="T:System.Security.Claims.ClaimsIdentity" /> öğesinin yanı sıra oturum açma oturumu hakkında bilgi içerir.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.IMicrosoftAccountAuthenticationProvider.ReturnEndpoint(Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountReturnEndpointContext)">
+      <summary>
+        <see cref="T:System.Security.Claims.ClaimsIdentity" />, yerel tanımlama bilgilerine kaydedilmeden ve tarayıcı, başta istenen URL'ye yönlendirilmeden önce çağrılır.</summary>
+      <returns>Tamamlanan işlemi temsil eden bir <see cref="T:System.Threading.Tasks.Task" />.</returns>
+    </member>
+    <member name="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountApplyRedirectContext">
+      <summary>Bir Challenge, Microsoft hesabı ara yazılımında son noktanın yetkilendirilmesi için yeniden yönlendirmeye neden olduğunda aktarılan bağlam</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountApplyRedirectContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions,Microsoft.Owin.Security.AuthenticationProperties,System.String)">
+      <summary>Yeni bir bağlam nesnesi oluşturur.</summary>
+      <param name="context">OWIN isteği bağlamı</param>
+      <param name="options">Microsoft hesabı ara yazılım seçenekleri</param>
+      <param name="properties">Challenge öğesinin kimlik doğrulaması özellikleri</param>
+      <param name="redirectUri">İlk yönlendirme URI'si</param>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountApplyRedirectContext.Properties">
+      <summary>Challenge öğesinin kimlik doğrulaması özelliklerini alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountApplyRedirectContext.RedirectUri">
+      <summary>Yeniden yönlendirme işlemi için kullanılan URI'yi alır.</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext">
+      <summary>Kullanıcı <see cref="T:System.Security.Claims.ClaimsIdentity" /> öğesinin yanı sıra oturum açma oturumu hakkında bilgi içerir.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.#ctor(Microsoft.Owin.IOwinContext,Newtonsoft.Json.Linq.JObject,System.String,System.String,System.String)">
+      <summary>Bir <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext" /> başlatır</summary>
+      <param name="context">OWIN ortamı</param>
+      <param name="user">JSON serileştirilmiş kullanıcı</param>
+      <param name="accessToken">Microsoft kimlik doğrulama hizmeti tarafından sağlanan erişim belirteci</param>
+      <param name="refreshToken">Microsoft kimlik doğrulama hizmeti tarafından sağlanan yenileme belirteci</param>
+      <param name="expires">Sürenin dolmasına kalan saniye</param>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.AccessToken">
+      <summary>Microsoft kimlik doğrulama hizmeti tarafından sağlanan erişim belirtecini alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.Email">
+      <summary>Kullanıcının e-posta adresini alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.ExpiresIn">
+      <summary>Microsoft erişim belirteci süre sonu</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.FirstName">
+      <summary>Kullanıcının adını alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.Id">
+      <summary>Microsoft Hesabı kullanıcı kimliğini alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.Identity">
+      <summary>Kullanıcıyı temsil eden <see cref="T:System.Security.Claims.ClaimsIdentity" /> öğesini alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.LastName">
+      <summary>Kullanıcının soyadını alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.Name">
+      <summary>Kullanıcının adını alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.Properties">
+      <summary>Ortak kimlik doğrulama özellikleri için bir özellik paketi alır veya ayarlar</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.RefreshToken">
+      <summary>Microsoft kimlik doğrulama hizmeti tarafından sağlanan yenileme belirtecini alır</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.User">
+      <summary>JSON serileştirilmiş kullanıcıyı alır</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationMiddleware">
+      <summary>Microsoft Account hizmetini kullanarak kullanıcıların oturum açması için OWIN ara yazılımı</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationMiddleware.#ctor(Microsoft.Owin.OwinMiddleware,Owin.IAppBuilder,Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions)">
+      <summary>Bir <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationMiddleware" /> başlatır</summary>
+      <param name="next">Çağrılacak OWIN ardışık düzenindeki bir sonraki ara yazılım</param>
+      <param name="app">OWIN uygulaması</param>
+      <param name="options">Ara yazılımın yapılandırma seçenekleri</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationMiddleware.CreateHandler">
+      <summary>Kimlik doğrulamayla ilgili isteklerin işlenmesi için <see cref="T:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler" /> öğesini sağlar.</summary>
+      <returns>Oluşturucuya, <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions" /> ile yapılandırılmış bir <see cref="T:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler" /> sağlanır.</returns>
+    </member>
+    <member name="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions">
+      <summary>
+        <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationMiddleware" /> için yapılandırma seçenekleri</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.#ctor">
+      <summary>Yeni bir <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions" /> başlatır.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.BackchannelCertificateValidator">
+      <summary>Microsoft Hesabına ait arka kanal iletişimlerde kullanılan uç noktalarını doğrulamada kullanılan sabit sertifika doğrulayıcısını alır veya ayarlar.</summary>
+      <returns>Sabit sertifika doğrulayıcısı.</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.BackchannelHttpHandler">
+      <summary>Microsoft ile iletişimde kullanılan HttpMessageHandler.Değer, bir WebRequestHandler öğesine yönlendirilemediği sürece, bu, BackchannelCertificateValidator ile aynı anda ayarlanamaz.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.BackchannelTimeout">
+      <summary>Microsoft ile arka kanal iletişim için zaman aşımı değerini milisaniye cinsinden alır veya ayarlar.</summary>
+      <returns>Arka kanal zaman aşımı.</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.CallbackPath">
+      <summary>User-agent öğesinin döndürüleceği, uygulamanın taban yolu içindeki istek yolu.Bu istek ulaştığında ara yazılım tarafından işlenir.Varsayılan değer "/signin-microsoft" şeklindedir.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.Caption">
+      <summary>Kullanıcının, bir oturum açma kullanıcı arabiriminde görüntüleyebileceği metni alır veya ayarlar.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.ClientId">
+      <summary>Microsoft kimlik doğrulama hizmeti tarafından atanan uygulama istemci kimliği.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.ClientSecret">
+      <summary>Microsoft kimlik doğrulama hizmeti tarafından atanan uygulama istemci gizli anahtarı.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.Provider">
+      <summary>Kimlik doğrulama olaylarını işlemede kullanılan <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.IMicrosoftAccountAuthenticationProvider" /> öğesini alır veya ayarlar.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.Scope">
+      <summary>İstenecek izinlerin bir listesi.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.SignInAsAuthenticationType">
+      <summary>Kullanıcıya gerçekten bir <see cref="T:System.Security.Claims.ClaimsIdentity" /> verilmesinden sorumlu olan başka bir kimlik doğrulama ara yazılımının adını alır veya ayarlar.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.StateDataFormat">
+      <summary>Ara yazılım tarafından işlenen verilerin güvenliğinde kullanılan tipi alır veya ayarlar.</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationProvider">
+      <summary>Varsayılan <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.IMicrosoftAccountAuthenticationProvider" /> uygulaması.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationProvider.#ctor">
+      <summary>Yeni bir <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationProvider" /> başlatır</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationProvider.ApplyRedirect(Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountApplyRedirectContext)">
+      <summary>Bir Challenge, Microsoft hesabı ara yazılımında son noktanın yetkilendirilmesi için yeniden yönlendirmeye neden olduğunda çağrılır</summary>
+      <param name="context">Yeniden yönlendirme URI'sini ve Challenge'ın <see cref="T:Microsoft.Owin.Security.AuthenticationProperties" /> öğesini içerir</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationProvider.Authenticated(Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext)">
+      <summary>Microsoft bir kullanıcının kimlik bilgilerini başarıyla doğruladığında çağrılır</summary>
+      <returns>Tamamlanan işlemi temsil eden bir <see cref="T:System.Threading.Tasks.Task" />.</returns>
+      <param name="context">Kullanıcı <see cref="T:System.Security.Claims.ClaimsIdentity" /> öğesinin yanı sıra oturum açma oturumu hakkında bilgi içerir.</param>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationProvider.OnApplyRedirect">
+      <summary>ApplyRedirect yöntemi çağrıldığında çağrılan temsilciyi alır veya ayarlar.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationProvider.OnAuthenticated">
+      <summary>Authenticated yöntemi çağrıldığında çağrılan işlevi alır veya ayarlar.</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationProvider.OnReturnEndpoint">
+      <summary>ReturnEndpoint yöntemi çağrıldığında çağrılan işlevi alır veya ayarlar.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationProvider.ReturnEndpoint(Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountReturnEndpointContext)">
+      <summary>
+        <see cref="T:System.Security.Claims.ClaimsIdentity" />, yerel tanımlama bilgilerine kaydedilmeden ve tarayıcı, başta istenen URL'ye yönlendirilmeden önce çağrılır.</summary>
+      <returns>Tamamlanan işlemi temsil eden bir <see cref="T:System.Threading.Tasks.Task" />.</returns>
+      <param name="context">Kullanıcı <see cref="T:System.Security.Claims.ClaimsIdentity" /> öğesinin yanı sıra oturum açma oturumu hakkında bilgi içerir</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountReturnEndpointContext">
+      <summary>Ara yazılım sağlayıcılarına bağlam bilgisi sağlar.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountReturnEndpointContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.AuthenticationTicket)">
+      <summary>Yeni bir <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountReturnEndpointContext" /> başlatır.</summary>
+      <param name="context">OWIN ortamı</param>
+      <param name="ticket">Kimlik doğrulaması bileti</param>
+    </member>
+    <member name="T:Owin.MicrosoftAccountAuthenticationExtensions">
+      <summary>
+        <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationMiddleware" /> kullanımı için genişletme yöntemleri</summary>
+    </member>
+    <member name="M:Owin.MicrosoftAccountAuthenticationExtensions.UseMicrosoftAccountAuthentication(Owin.IAppBuilder,Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions)">
+      <summary>Microsoft Account kullanarak kullanıcı kimlik bilgilerini doğrulayın</summary>
+      <returns>Güncelleştirilmiş <see cref="T:Owin.IAppBuilder" /></returns>
+      <param name="app">Yapılandırma yöntemine iletilen <see cref="T:Owin.IAppBuilder" /></param>
+      <param name="options">Ara yazılım yapılandırma seçenekleri</param>
+    </member>
+    <member name="M:Owin.MicrosoftAccountAuthenticationExtensions.UseMicrosoftAccountAuthentication(Owin.IAppBuilder,System.String,System.String)">
+      <summary>Microsoft Account kullanarak kullanıcı kimlik bilgilerini doğrulayın</summary>
+      <param name="app">Yapılandırma yöntemine iletilen <see cref="T:Owin.IAppBuilder" /></param>
+      <param name="clientId">Microsoft kimlik doğrulama hizmeti tarafından atanan uygulama istemci kimliği</param>
+      <param name="clientSecret">Microsoft kimlik doğrulama hizmeti tarafından atanan uygulama istemci gizli anahtarı</param>
+    </member>
+  </members>
+</doc>
